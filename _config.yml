@@ -14,8 +14,6 @@ urls:
       url: /about
     - text: Blog
       url: /blog
-    - text: Gallery
-      url: /gallery
     - text: Contact
       url : /contact
 
@@ -77,8 +75,8 @@ wakatime_username: creboring
 mailchimp_form_url: https://sujaykundu.us10.list-manage.com/subscribe/post?u=50bab1c85eae24ecfb0f68361&amp;id=3a2dd721d0
 
 # contact form - (choose formspress or getform)
-getform_endpoint: 83b703c3-9e47-4df4-ac55-e24d7eb02abc
-formspree_email: johndoe@gmail.com
+#getform_endpoint: 39a94181-1e90-4fd7-b5db-dd073f4c52a7
+formspree_endpoint: xdoypdqp
 
 # releases - widget can be (sidebar, modal or embed)
 olvy_organization: devlopr
