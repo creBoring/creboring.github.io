@@ -60,18 +60,24 @@ author_education_details:
 
 # Certificates
 author_certifications:
-            - certificate_name: AWS Certified Solutions Architect - Associate
-              certificate_authenticator: AWS
-            - certificate_name: AWS Certified Solutions Architect - Professional
-              certificate_authenticator: AWS
-            - certificate_name: AWS Certified SysOps Administrator - Associate
-              certificate_authenticator: AWS
-            - certificate_name: AWS Certified Developer - Associate
-              certificate_authenticator: AWS
-            - certificate_name: AWS Certified DevOps Engineer - Professional
-              certificate_authenticator: AWS
-            - certificate_name: AWS Certified Security - Specialty
-              certificate_authenticator: AWS
+  types:
+        - type_name: AWS
+        - type_name: dd
+  certificates:
+        - certificate_name: Solutions Architect - Associate
+          certificate_authenticator: AWS
+        - certificate_name: Solutions Architect - Professional
+          certificate_authenticator: AWS
+        - certificate_name: SysOps Administrator - Associate
+          certificate_authenticator: AWS
+        - certificate_name: Developer - Associate
+          certificate_authenticator: AWS
+        - certificate_name: DevOps Engineer - Professional
+          certificate_authenticator: AWS
+        - certificate_name: Security - Specialty
+          certificate_authenticator: dd
+
+
 
 # social links
 github_username:  creBoring

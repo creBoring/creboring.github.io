@@ -102,21 +102,24 @@ layout: default
     {% if site.show_author_certification_details == true %}
     <div id="author_certifications" class="card">
       <h1 class="card-title">Certifications</h1>
-      <ul>
-      {% for cert in site.author_certifications %}
-        <li class="row">
+      {% for type in site.author_certifications.types %}
+        <h4 class="certificate-type">{{ type.type_name }}</h3>
+        {% for cert in site.author_certifications.certificates %}
+        {% if cert.certificate_authenticator == type.type_name %}
+        <div class="row" style="margin-left: 10px;margin-bottom:10px;"">
           <div class="col-md-2">
             <img
               src="{{site.url}}{{site.baseurl}}/assets/img/cert/{{ cert.certificate_authenticator }}.png"
-              class="certificate-logo"
+              class="certificate-img"
             />
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8" >
             <span class="certificate-name">{{ cert.certificate_name }}</span>
           </div>
-        </li>
+        </div>
+        {% endif %}
         {% endfor %}
-        </ul>
+      {% endfor %}
     </div>
     {% endif %}
 
