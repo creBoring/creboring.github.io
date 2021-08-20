@@ -3,7 +3,7 @@ subtitle: the developer
 description: >- # this means to ignore newlines until "baseurl:"
   devlopr-jekyll is a beautiful Jekyll Theme Built For Developers, which is optimized for speed and readability.
 
-url: "" # the base hostname & protocol for your site, e.g. https://example.github.io
+url: "https://creboring.github.io" # the base hostname & protocol for your site, e.g. https://example.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
 
 # Navigation
@@ -24,8 +24,9 @@ author_logo: profile.png
 author: Dohun Lee
 author_bio: Hi, my name is Dohun Lee. I develop what I want, and I love it.
 author_email: "cre.boring@gmail.com"
-author_location: Korea
-typewrite-text: Welcome to my blog, and feel free to ask or advise something to me :)
+author_website_url: "creboring.github.io"
+author_location: South Korea
+typewrite-text: Welcome to my blog, and feel free to ask or advise something :)
 
 # Experiences
 author_work_experiences:
@@ -57,6 +58,20 @@ author_education_details:
                 description: Software Meister Highschool
                 visibility: true
 
+# Certificates
+author_certifications:
+            - certificate_name: AWS Certified Solutions Architect - Associate
+              certificate_authenticator: AWS
+            - certificate_name: AWS Certified Solutions Architect - Professional
+              certificate_authenticator: AWS
+            - certificate_name: AWS Certified SysOps Administrator - Associate
+              certificate_authenticator: AWS
+            - certificate_name: AWS Certified Developer - Associate
+              certificate_authenticator: AWS
+            - certificate_name: AWS Certified DevOps Engineer - Professional
+              certificate_authenticator: AWS
+            - certificate_name: AWS Certified Security - Specialty
+              certificate_authenticator: AWS
 
 # social links
 github_username:  creBoring
@@ -69,7 +84,9 @@ instagram_username: l22d0hun
 hyvor_talk_website_id: 476
 
 # wakatime username (coding activity)
-wakatime_username: creboring
+# wakatime_username: creboring
+
+
 
 # mailchimp embedded form url (newsletter):
 mailchimp_form_url: https://sujaykundu.us10.list-manage.com/subscribe/post?u=50bab1c85eae24ecfb0f68361&amp;id=3a2dd721d0
@@ -90,7 +107,8 @@ permalink: pretty
 # Choose what to show ( can be true or false)
 show_author_work_experiences: true
 show_author_education_details: true
-show_author_project_details: true
+show_author_project_details: false
+show_author_certification_details: true
 
 # pagination of posts
 paginate: 4

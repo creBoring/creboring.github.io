@@ -99,13 +99,27 @@ layout: default
       {%- include author_skills.html -%}
     </div>
 
-    {% if site.wakatime_username %}
-    <div class="card">
-      <h1>Coding Activity</h1>
-
-      {%- include coding_activity.html -%}
+    {% if site.show_author_certification_details == true %}
+    <div id="author_certifications" class="card">
+      <h1 class="card-title">Certifications</h1>
+      <ul>
+      {% for cert in site.author_certifications %}
+        <li class="row">
+          <div class="col-md-2">
+            <img
+              src="{{site.url}}{{site.baseurl}}/assets/img/cert/{{ cert.certificate_authenticator }}.png"
+              class="certificate-logo"
+            />
+          </div>
+          <div class="col-md-6">
+            <span class="certificate-name">{{ cert.certificate_name }}</span>
+          </div>
+        </li>
+        {% endfor %}
+        </ul>
     </div>
     {% endif %}
+
   </div>
   <div class="col-lg-8">
     {% if site.author_bio %}
