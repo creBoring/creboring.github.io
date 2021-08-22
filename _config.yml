@@ -62,7 +62,7 @@ author_education_details:
 author_certifications:
   types:
         - type_name: AWS
-        - type_name: 한국산업인력공단
+        - type_name: HRDK
   certificates:
         - certificate_name: Solutions Architect - Associate
           certificate_authenticator: AWS
@@ -77,7 +77,7 @@ author_certifications:
         - certificate_name: Security - Specialty
           certificate_authenticator: AWS
         - certificate_name: 정보처리기사
-          certificate_authenticator: 한국산업인력공단
+          certificate_authenticator: HRDK
 
 
 
