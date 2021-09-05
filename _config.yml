@@ -22,7 +22,7 @@ urls:
 
 author_logo: profile.png
 author: Dohun Lee
-author_bio: Hi, my name is Dohun Lee. I develop what I want, and I love it.
+author_bio: 안녕하세요, 현재 AWS 파트너사에서 <b>빌링 시스템</b> 및 <b>웹 페이지</b>를 운영 및 개발하고 있습니다.<p><b>AWS</b> 내에서 시스템을 운영 및 개발하는데 능하며, 컨테이너를 이용한 <b><i>MSA(Micro Service Architecture)</i></b> 에 관심이 많습니다.</p>
 author_email: "cre.boring@gmail.com"
 author_website_url: "creboring.github.io"
 author_location: South Korea
@@ -30,13 +30,13 @@ typewrite-text: Welcome to my blog, and feel free to ask or advise something :)
 
 # Experiences
 author_work_experiences:
-            - company_name: Saltware Co., Ltd.
+            - company_name: 솔트웨어 주식회사
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: Software Engineer
               description: <i>Period 2021.07 ~</i><br>Development & maintenance Saltware Billing System
               visibility: true
-            - company_name: Saltare Co., Ltd.
+            - company_name: 솔트웨어 주식회사
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: Technical Support Manager
@@ -46,13 +46,13 @@ author_work_experiences:
 # Education
 author_education_details:
               - college_logo: kpu.png
-                college_name: Korea Polytechnic University
+                college_name: 한국산업기술대학교
                 college_url: https://www.kpu.ac.kr
                 college_degree: Information Communication Technology Engineering
                 description: Bachelor of Technology
                 visibility: true
               - college_logo: dsm.png
-                college_name: Daedeok Software Meister High School
+                college_name: 대덕소프트웨어마이스터고등학교
                 college_url: https://dsmhs.djsch.kr
                 college_degree: Software Development
                 description: Software Meister Highschool
@@ -86,21 +86,13 @@ github_username:  creBoring
 linkedin_username: l22dohun
 instagram_username: l22d0hun
 
-#for comments ( we got Disqus and Hyvor Commenting, uncomment the one you want to use )
-
-# disqus_shortname: sujay-kundu
+#for comments
 hyvor_talk_website_id: 5044
-
-# wakatime username (coding activity)
-# wakatime_username: creboring
-
-
 
 # mailchimp embedded form url (newsletter):
 mailchimp_form_url: https://sujaykundu.us10.list-manage.com/subscribe/post?u=50bab1c85eae24ecfb0f68361&amp;id=3a2dd721d0
 
-# contact form - (choose formspress or getform)
-#getform_endpoint: 39a94181-1e90-4fd7-b5db-dd073f4c52a7
+# contact form
 formspree_endpoint: xdoypdqp
 
 # releases - widget can be (sidebar, modal or embed)
