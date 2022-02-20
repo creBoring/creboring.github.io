@@ -119,14 +119,14 @@ body {
     color: var(--main-text-color) !important;
     font-family: 'Quicksand', sans-serif !important;
     font-feature-settings: "kern"on;
-    font-size: 1.4rem;
+    font-size: 18px !important;
     font-variant-numeric: oldstyle-nums;
     hanging-punctuation: first last;
     height: 100%;
     line-height: 1.35em;
     margin: 0;
     text-rendering: optimizeLegibility;
-    padding-top:33px;
+    padding-top:0px !important;
     overflow-x:hidden;
     overflow-y:scroll;
 }
@@ -155,25 +155,12 @@ pre {
     margin:35px;
 }
 
-blockquote {
-    margin: 2rem 1rem 1rem;
-    padding: 3px;
-    background: var(--main-background-color) !important;
-    border: 1px solid;
-    color: var(--bold-color);
-}
-
 /* Scrollbar */
 
  /* width */
  ::-webkit-scrollbar {
     width: 10px;
  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background:  rgb(28, 28, 30);;
-  }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
@@ -209,7 +196,6 @@ header {
     width: fit-content !important;
     margin-left: 0px !important;
     margin-right: 0px !important;
-    margin-top: 10px !important;
 }
 .card {
     margin: 20px !important;
@@ -503,6 +489,7 @@ header {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+    border-radius: 0 !important;
 }
 /* pagination */
 .pagination-link{
@@ -630,7 +617,9 @@ header {
 }
 
 #recent-articles,#recent-projects{
-    margin-top: 100px !important;
+    margin-top: 75px !important;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 #recent-articles-header{
@@ -650,15 +639,17 @@ header {
 }
 .article-card-link, .article-card-link:hover{
     text-decoration: none;
-    color: orange !important;
+    color: var(--bold-color) !important;
 }
 .article-card{
     list-style-type: none;
 }
 .article-card a :hover{
     text-decoration: none;
+    color: white;
     background: #303030!important;
     border-color: #303030;
+    //border-radius: 15px;
     background: transparent;
 }
 

@@ -6,3 +6,66 @@
 @import "devlopr";
 
 /* custom css goes below */
+
+blockquote > p {
+  font-size: 16px !important;
+  padding-bottom: 0 !important;
+}
+
+p {
+  margin-bottom: 0 !important;
+  padding-bottom: 1.5rem !important;
+  font-size: 18px !important;
+}
+
+h2 {
+  margin: 40px 0 12px 0 !important;
+  font-weight: bold !important;
+}
+
+h3, h4, h5 {
+  margin: 20px 0 12px 0 !important;
+  font-weight: bold !important;
+}
+
+h5:first-child {
+  margin: 0px 0 12px 0 !important;
+}
+
+blockquote {
+  background-color: #f5f5f5;
+  color: #5d686f;
+  border-left: 5px solid #dbdbdb;
+  padding: 1em 1.2em;
+}
+
+code {
+  background: #212529;
+  border-radius: 3px;
+  font-size: 85%;
+  color: #ebb866 !important;
+  padding: 0.2em 0.4em;
+}
+
+.post-title {
+  font-size: 2rem !important;
+  font-weight: bold;
+}
+
+.card {
+  border: none !important;
+  background: white !important;
+  //border-color: white;
+}
+
+.card-border {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  border-radius: 0.25rem;
+  background-color: var(--card-background-color) !important;
+}
+
+.card-title-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}

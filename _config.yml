@@ -1,5 +1,5 @@
 title: Dohun Lee
-subtitle: the developer
+subtitle: Backend developer
 description: >- # this means to ignore newlines until "baseurl:"
   devlopr-jekyll is a beautiful Jekyll Theme Built For Developers, which is optimized for speed and readability.
 
@@ -14,15 +14,13 @@ urls:
       url: /about
     - text: Blog
       url: /blog
-    - text: Contact
-      url : /contact
 
 
 # Edit Author details (For multi authors check _data/authors.yml)
 
 author_logo: profile.png
 author: Dohun Lee
-author_bio: 안녕하세요, 현재 AWS 파트너사에서 <b>빌링 시스템</b> 및 <b>웹 페이지</b>를 운영 및 개발하고 있습니다.<p><b>AWS</b> 내에서 시스템을 운영 및 개발하는데 능하며, 컨테이너를 이용한 <b><i>MSA(Micro Service Architecture)</i></b> 에 관심이 많습니다.</p>
+author_bio: 안녕하세요, 현재 <b>AWS 파트너사</b>에서 빌링 시스템 구축, 웹 페이지 운영 및 개발을 담당하고 있습니다.<p><b>AWS</b> 내에 인프라를 구축하는 프로젝트에 다수 참여했으며, 컨테이너를 이용한 <b>MSA(Micro Service Architecture)</b> 및 <b>DevOps</b>에 관심이 있습니다.</p>
 author_email: "cre.boring@gmail.com"
 author_website_url: "creboring.github.io"
 author_location: South Korea
@@ -34,13 +32,13 @@ author_work_experiences:
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: Software Engineer
-              description: <i>Period 2021.07 ~</i><br>Development & maintenance Saltware Billing System
+              description: <i>Period 2021.07 ~ Current</i><br> - CMT(Cloud Management Tool) Developer<br> - Maintain Company's AWS Infrastructure and CI/CD pipeline<br> - Handling AWS CUR billing data
               visibility: true
             - company_name: 솔트웨어 주식회사
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: Technical Support Manager
-              description: <i>Period 2017.09 ~ 2021.07</i><br>Technical Support Manager at an AWS Partner Company
+              description: <i>Period 2017.09 ~ 2021.07</i><br> - AWS Partner Technical Support Manager<br> - AWS Partner Immersionday Instructor
               visibility: true
 
 # Education
@@ -91,9 +89,6 @@ hyvor_talk_website_id: 5044
 
 # mailchimp embedded form url (newsletter):
 mailchimp_form_url: https://sujaykundu.us10.list-manage.com/subscribe/post?u=50bab1c85eae24ecfb0f68361&amp;id=3a2dd721d0
-
-# contact form
-formspree_endpoint: xdoypdqp
 
 # releases - widget can be (sidebar, modal or embed)
 olvy_organization: devlopr

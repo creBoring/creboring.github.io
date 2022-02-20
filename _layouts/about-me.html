@@ -4,7 +4,7 @@ layout: default
 <div class="col-lg-12">
 <div class="row">
   <div class="col-lg-4 ">
-    <div class="card" id="profile-card">
+    <div class="card card-border" id="profile-card">
       <a href="/">
         <img src="{{site.url}}{{site.baseurl}}/assets/img/{{ site.author_logo }}" class="profile-img" />
       </a>
@@ -93,20 +93,20 @@ layout: default
       {% endif %}
     </div>
 
-    <div class="card">
+    <div class="card card-border">
       <h1>Skills</h1>
 
       {%- include author_skills.html -%}
     </div>
 
     {% if site.show_author_certification_details == true %}
-    <div id="author_certifications" class="card">
+    <div id="author_certifications" class="card card-border">
       <h1 class="card-title">Certifications</h1>
       {% for type in site.author_certifications.types %}
-        <h4 class="certificate-type">{{ type.type_name }}</h3>
+        <h4 class="certificate-type">{{ type.type_name }}</h4>
         {% for cert in site.author_certifications.certificates %}
         {% if cert.certificate_authenticator == type.type_name %}
-        <div class="row" style="margin-left: 10px;margin-bottom:10px;"">
+        <div class="row" style="margin-left: 10px;margin-bottom:10px;">
           <div class="col-md-2">
             <img
               src="{{site.url}}{{site.baseurl}}/assets/img/cert/{{ cert.certificate_authenticator }}.png"
@@ -126,12 +126,12 @@ layout: default
   </div>
   <div class="col-lg-8">
     {% if site.author_bio %}
-    <div class="card">
+    <div class="card card-border">
       <h1 class="card-title">About</h1>
       <p>{{ site.author_bio }}</p>
     </div>
     {% endif %} {% if site.show_author_project_details == true %}
-    <div id="author_projects" class="card">
+    <div id="author_projects" class="card card-border">
       <h1 class="card-title">Projects</h1>
       <br />
       {% for project in site.author_project_details %} {% if project.visibility
@@ -158,11 +158,10 @@ layout: default
       {% endif %} {% endfor %}
     </div>
     {% endif %} {% if site.show_author_work_experiences == true %}
-    <div class="card">
+    <div class="card card-border">
       <h1 class="card-title">Work Experience</h1>
       <br />
-      {% for exp in site.author_work_experiences %} {% if exp.visibility == true
-      %}
+      {% for exp in site.author_work_experiences %} {% if exp.visibility == true %}
       <div class="row">
         <div class="col-md-2">
           <img
@@ -170,17 +169,17 @@ layout: default
             class="company-logo"
           />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-9">
           <h4 class="experience-title">{{ exp.designation }}</h4>
-          <h6 class="experience-info">{{ exp.company_name}}</h6>
+          <h6 class="experience-info"><a href="{{exp.company_url}}">{{ exp.company_name}}</a></h6>
           <p class="experience-desc">{{ exp.description }}</p>
-          <p><a href="{{exp.company_url}}">{{ exp.company_url}}</a></p>
+          <br>
         </div>
       </div>
       {% endif %} {% endfor %}
     </div>
     {% endif %} {% if site.show_author_education_details == true %}
-    <div class="card">
+    <div class="card card-border">
       <h1 class="card-title">Education</h1>
       <br />
       {% for detail in site.author_education_details %} {% if detail.visibility
@@ -194,9 +193,9 @@ layout: default
         </div>
         <div class="col-md-6">
           <h4 class="experience-title">{{detail.college_degree }}</h4>
-          <h6 class="experience-info">{{detail.college_name}}</h6>
+          <h6 class="experience-info"><a href="{{detail.college_url}}">{{detail.college_name}}</a></h6>
           <p class="experience-desc">{{detail.description}}</p>
-          <p><a href="{{detail.college_url}}">{{ detail.college_url}}</a></p>
+          <br>
         </div>
       </div>
       {% endif %} {% endfor %}
