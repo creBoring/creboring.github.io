@@ -20,7 +20,7 @@ urls:
 
 author_logo: profile.png
 author: Dohun Lee
-author_bio: 안녕하세요, 현재 <b>AWS 파트너사</b>에서 빌링 시스템 구축, 웹 페이지 운영 및 개발을 담당하고 있습니다.<p><b>AWS</b> 내에 인프라를 구축하는 프로젝트에 다수 참여했으며, 컨테이너를 이용한 <b>MSA(Micro Service Architecture)</b> 및 <b>DevOps</b>에 관심이 있습니다.</p>
+author_bio: 안녕하세요, 현재 <b>AWS 파트너사</b>에서 <b>자체 빌링 시스템(CMT)</b> 인프라 구성, 웹 페이지 운영 및 개발을 담당하고 있습니다.<p><b>AWS</b> 내에 인프라를 구축하는 프로젝트에 다수 참여했으며, 컨테이너를 이용한 <b>MSA(Micro Service Architecture)</b> 및 <b>DevOps</b>에 관심이 있습니다.</p>
 author_email: "cre.boring@gmail.com"
 author_website_url: "creboring.github.io"
 author_location: South Korea

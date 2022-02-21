@@ -7,6 +7,10 @@
 
 /* custom css goes below */
 
+@font-face {
+  font-family: '';
+}
+
 blockquote > p {
   font-size: 16px !important;
   padding-bottom: 0 !important;
@@ -19,28 +23,32 @@ p {
 }
 
 h2 {
-  margin: 40px 0 12px 0 !important;
+  margin-bottom: 0 !important;
+  padding: 40px 0 0 0 !important;
   font-weight: bold !important;
 }
 
-h3, h4, h5 {
-  margin: 20px 0 12px 0 !important;
+h3, h4 {
   font-weight: bold !important;
 }
 
-h5:first-child {
-  margin: 0px 0 12px 0 !important;
+strong {
+  color: var(--medium-text-color) !important;
+}
+
+hr {
+  background-color: var(--light-border-color) !important
 }
 
 blockquote {
-  background-color: #f5f5f5;
+  background-color: var(--box-background-color);
   color: #5d686f;
   border-left: 5px solid #dbdbdb;
   padding: 1em 1.2em;
 }
 
 code {
-  background: #212529;
+  background: #292e33;
   border-radius: 3px;
   font-size: 85%;
   color: #ebb866 !important;
@@ -52,9 +60,13 @@ code {
   font-weight: bold;
 }
 
+.post-meta {
+  color: #777777 !important;
+}
+
 .card {
   border: none !important;
-  background: white !important;
+  background: var(--main-background-color) !important;
   //border-color: white;
 }
 
@@ -67,5 +79,5 @@ code {
 .card-title-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solid var(--light-border-color);
 }
