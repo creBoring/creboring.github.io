@@ -1,7 +1,7 @@
 /* devlopr-jekyll styling */
 
 /* variables */
-$body-typeface:'Quicksand', sans-serif;
+$body-typeface:'Noto Sans KR', sans-serif;
 $nav-typeface: "Gill sans";
 $mono-typeface: Menlo, Monaco, monospace;
 $text-width: 650px;
@@ -117,7 +117,7 @@ ol, ul {
 body {
     background-color: var(--main-background-color) !important;
     color: var(--main-text-color) !important;
-    font-family: 'Quicksand', sans-serif !important;
+    font-family: 'Noto Sans KR', sans-serif !important;
     font-feature-settings: "kern"on;
     font-size: 18px !important;
     font-variant-numeric: oldstyle-nums;

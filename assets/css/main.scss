@@ -7,8 +7,8 @@
 
 /* custom css goes below */
 
-@font-face {
-  font-family: '';
+.jumbotron-heading {
+  font-size: 35px !important;
 }
 
 blockquote > p {
@@ -24,7 +24,7 @@ p {
 
 h2 {
   margin-bottom: 0 !important;
-  padding: 40px 0 0 0 !important;
+  padding: 45px 0 0 0 !important;
   font-weight: bold !important;
 }
 
@@ -54,6 +54,8 @@ code {
   color: #ebb866 !important;
   padding: 0.2em 0.4em;
 }
+
+
 
 .post-title {
   font-size: 2rem !important;
