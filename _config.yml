@@ -32,7 +32,7 @@ author_work_experiences:
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: Software Engineer
-              description: <i>Period 2021.07 ~ Current</i><br> - CMT(Cloud Management Tool) Developer<br> - Maintain Company's AWS Infrastructure and CI/CD pipeline<br> - Handling AWS CUR billing data
+              description: <i>Period 2021.07 ~ Current</i><br> - CMT(Cloud Management Tool) Developer<br> - Maintain Company's AWS Infrastructure<br> - Handling AWS CUR billing data
               visibility: true
             - company_name: 솔트웨어 주식회사
               company_logo: saltware.png

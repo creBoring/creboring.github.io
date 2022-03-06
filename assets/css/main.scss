@@ -26,6 +26,7 @@ h2 {
   margin-bottom: 0 !important;
   padding: 45px 0 0 0 !important;
   font-weight: bold !important;
+  font-size: 28px !important;
 }
 
 h3, h4 {
@@ -56,10 +57,17 @@ code {
 }
 
 
+.navbar {
+  font-family: 'Quicksand', sans-serif !important;
+}
 
 .post-title {
-  font-size: 2rem !important;
+  font-size: 30px !important;
   font-weight: bold;
+}
+
+.post-summary {
+  font-size: 16px !important;
 }
 
 .post-meta {
@@ -82,4 +90,26 @@ code {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   border-bottom: 1px solid var(--light-border-color);
+}
+
+
+/* About me Page */
+
+#author_certifications {
+  .certificate-row {
+    min-height: 40px;
+  }
+
+  .certificate-img {
+    position: absolute;
+    top: 50%;
+    margin-top:-20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .certificate-name {
+    font-size: 14px;
+  }
 }
