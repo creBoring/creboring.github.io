@@ -1,0 +1,98 @@
+---
+layout: post
+title: "[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Deploy"
+summary: "CodePipeline을 이용한 S3 CI/CD 구축하기 - Deploy편"
+author: creboring
+date: '2022-03-09 18:30:47 +0530'
+category: AWS
+thumbnail: /assets/img/posts/category/CodePipeline.png
+keywords: how to use code series, frontend aws cicd, frontend code series
+permalink: /blog/codepipeline-s3-cicd-pipeline-4/
+usemathjax: true
+---
+
+
+#### **4. S3 버킷 생성**
+S3는 기본적으로 데이터 저장소로써 많이 사용되지만, Web 서버의 역할도 수행할 수 있습니다. 이번 단계는 소스코드를 배포할 **S3 버킷**을 새로 생성하고, ***Static Web Hosting 기능*** 을 활성화 하여 Web 서버를 띄워보겠습니다.
+> ※ S3 정적 웹 호스팅 기능을 사용하려는 경우 S3 버킷명은 서비스 도메인명과 일치해야 합니다. <br>
+ex) 버킷명 = test.creboring.com
+
+<img src="/assets/img/posts/2021-08-17/S3.png" class="img-fluid"/>
+##### S3 버킷 생성
+1. AWS 콘솔에서 **S3** 페이지로 이동합니다.
+2. 버킷 만들기 페이지로 이동해 버킷명을 입력하고 생성합니다. (버킷명은 서비스 도메인명과 일치해야 합니다.)
+
+##### S3 버킷 권한 설정
+1. 방금 생성한 S3 버킷의 상세 페이지로 이동합니다.
+2. 페이지의 **권한** 탭에서 **퍼블릭 액세스 차단**을 모두 비활성화해줍니다. (버킷에 외부 사용자가 접근 가능하게 하기 위한 용도입니다)
+3. 같은 **권한** 탭 내에서 **버킷 정책**을 설정해줍니다. 버킷 정책으로 아래 json을 입력해줍니다. (버킷 ARN에는 실제 버킷의 ARN을 입력해줍니다) (마찬가지로 버킷 객체에 외부 사용자가 접근 가능하도록 하기 위함입니다.)
+``` json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "(버킷 ARN)"
+    }
+  ]
+}
+```
+
+##### S3 정적 웹 호스팅 활성화
+1. 버킷 상세 페이지에서 **속성** 탭으로 이동합니다.
+2. 속성 탭에서 정적 웹 사이트 호스팅을 활성화 해줍니다. 활성화 시 아래와 같은 설정을 선택해줍니다.
+    - 호스팅 유형: 정적 웹 사이트 호스팅
+    - 인덱스 문서: index.html
+
+#### **5. CodePipeline 생성**
+이제 각 단계를 파이프라인으로 연결시켜, CodeCommit에 커밋이 발생했을 때 자동으로 빌드와 배포가 수행되도록 구성합니다. **CodePipeline**은 이 모든 단계들을 연결시켜주는 매개체이며, source, build, deploy 외에도 *test* , *수동 승인* 과 같은 추가 작업들을 파이프라인에 추가할 수 있습니다.
+
+<img src="/assets/img/posts/2021-08-17/CodePipeline.png" class="img-fluid"/>
+1. AWS 콘솔에서 **CodePipeline** 페이지로 이동합니다.
+2. 파이프라인 생성 페이지로 이동한 후, 한 단계씩 지금까지 생성한 리소스들을 추가해주겠습니다.
+3. **소스(Source)** 단계에서는 아래와 같이 선택합니다.
+   - **소스 공급자**: AWS CodeCommit
+   - **리포지토리 이름**: (위에서 만든 CodeCommit 레포지토리)
+   - **브랜치 이름**: master
+4. **빌드(Build)** 단계에서는 아래와 같이 선택합니다.
+   - **빌드 공급자**: AWS CodeBuild
+   - **리전**: 아시아 태평양(서울)
+   - **프로젝트 이름**: (위에서 만든 CodeBuild 프로젝트)
+5. **배포(Deploy)** 단계에서는 아래와 같이 선택합니다.
+   - **배포 공급자**: Amazon S3
+   - **리전**: 아시아 태평양(서울)
+   - **버킷**: (정적 웹호스팅 기능이 활성화 된 S3 버킷)
+   - **'배포하기 전에 파일 압축 풀기'** 를 활성화해줍니다.
+6. 마지막으로 입력한 내용들 검토 후 파이프라인을 생성합니다.
+
+> ※ CodePipeline이 생성되는 과정에서, IAM 관련 리소스가 즉시 업데이트 되지 않아 첫 배포가 실패될 수 있습니다. 이 경우 **[변경 사항 릴리즈]** 버튼이나 **[재시도]** 버튼을 통해 배포를 재시도해보시기 바랍니다.
+
+#### **6. 테스트**
+파이프라인이 모두 정상적으로 구축될 경우, 아래 사진과 같이 모든 단계가 성공으로 표시되어야 합니다. 만약 그렇지 않은 경우 상세 보기를 통해 실패의 원인을 확인해보시기 바랍니다.
+
+<img src="/assets/img/posts/2021-08-17/CodePipeline_Success.png" class="img-fluid"/>
+
+파이프라인이 성공적으로 구동한 경우, S3 버킷에도 아래와 같이 정상적으로 소스들이 확인되셔야 합니다.
+
+<img src="/assets/img/posts/2021-08-17/S3_Success.png" class="img-fluid"/>
+
+이제 S3 버킷 상세페이지의 속성 탭으로 이동하여 정적 웹호스팅 URL을 확인하고, 외부에서 정상적으로 호출이 가능한지 테스트해봅니다.
+
+<img src="/assets/img/posts/2021-08-17/S3_Web.png" class="img-fluid"/>
+
+URL 호출 시, 아래와 같이 확인되시면 성공입니다.
+
+<img src="/assets/img/posts/2021-08-17/Success.png" class="img-fluid"/>
+
+## 끝으로
+---
+지금까지 CodePipeline을 이용해 S3 버킷을 향한 CI/CD Pipeline을 구축해보았습니다. 짧다면 짧고, 어렵다면 어렵게 느껴질 수 있을만한 내용으로, AWS와 CI/CD에 대한 이해도에 따라 다르게 느껴지실 것 같습니다.
+
+이번 실습에 사용된 예제나 파이프라인은 매우 단순한 방식의 예제입니다만, 실제로는 운영환경이나 실용성을 위해 추가적인 단계가 많이 사용되기도 하며, Lambda Slack Bot 등을 이용해 수동 승인 절차를 추가하기도 합니다.
+
+현 게시글에서 이를 모두 다루지는 못했지만, 가장 간단한 방식의 파이프라인을 따라 구축해보며 파이프라인이 어떻게 만들어지고 구성되는지에 대해 조금이나마 이해하셨다면 성공적이라고 생각합니다. 현재 게시글에 대해 추가적인 질문이나, 잘못된 내용이 있다면 댓글로 남겨주시면 감사하겠습니다
+
+감사합니다
