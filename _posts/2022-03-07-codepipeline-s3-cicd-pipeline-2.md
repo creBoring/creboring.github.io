@@ -81,6 +81,12 @@ ex)
 <img src="/assets/img/posts/2022-03-07/CodeCommit-done.png" class="img-fluid"/>
 
 
+## 정리
+---
+위 과정을 통해 **파이프라인을 동작시킬 소스코드 저장소를 만들고, 소스코드를 업로드했습니다**. 다음 과정에서는 업로드된 소스코드를 어떻게 빌드할지에 대해 다룹니다.
+- 이전: [[CodePipeline] S3 CI/CD 파이프라인 구축하기 - 이론편][link_1]{:target="_blank"}
+- 다음: [[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Build 편][link_3]{:target="_blank"}
+
 [link_1]: https://creboring.github.io/blog/codepipeline-s3-cicd-pipeline/
 [link_2]: https://creboring.github.io/blog/codepipeline-s3-cicd-pipeline-2/
 [link_3]: https://creboring.github.io/blog/codepipeline-s3-cicd-pipeline-3/
