@@ -1,5 +1,5 @@
-title: Dohun Lee
-subtitle: Backend developer
+title: 잡다한 기술공방
+subtitle: 근데 이제 IT를 곁들인
 description: >- # this means to ignore newlines until "baseurl:"
   devlopr-jekyll is a beautiful Jekyll Theme Built For Developers, which is optimized for speed and readability.
 
@@ -12,7 +12,7 @@ urls:
       url: /
     - text: About
       url: /about
-    - text: Blog
+    - text: 블로그
       url: /blog
 
 
@@ -20,25 +20,27 @@ urls:
 
 author_logo: profile.png
 author: Dohun Lee
-author_bio: 안녕하세요, 현재 <b>AWS 파트너사</b>에서 <b>자체 빌링 시스템(CMT)</b> 인프라 구성, 웹 페이지 운영 및 개발을 담당하고 있습니다.<p><b>AWS</b> 내에 인프라를 구축하는 프로젝트에 다수 참여했으며, 컨테이너를 이용한 <b>MSA(Micro Service Architecture)</b> 및 <b>DevOps</b>에 관심이 있습니다.</p>
+author_kr: 이도훈
+author_description: 즐거운 월요일
+author_bio: 안녕하세요, 블로그를 운영중인 개발자 <b>이도훈</b>입니다.<br><br><b>AWS파트너사</b>에서의 경험을 토대로 많은 분들에게 다양한 정보들을 제공하고자 합니다. 클라우드는 생각보다 그렇게 어려운 개념이 아닐지도 모릅니다 :)<br><br><b>AWS</b> 내에 인프라를 구축하는 프로젝트에 다수 참여했으며, 컨테이너를 이용한 <b>MSA(Micro Service Architecture)</b> 및 <b>DevOps</b>에 관심이 있습니다.</p>
 author_email: "cre.boring@gmail.com"
 author_website_url: "creboring.github.io"
 author_location: South Korea
-typewrite-text: Welcome to my blog, and feel free to ask or advise something :)
+typewrite-text: 평범한 개발자가 운영하는 흔한 블로그 중 하나
 
 # Experiences
 author_work_experiences:
             - company_name: 솔트웨어 주식회사
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
-              designation: Software Engineer
-              description: <i>Period 2021.07 ~ Current</i><br> - CMT(Cloud Management Tool) Developer<br> - Maintain Company's AWS Infrastructure<br> - Handling AWS CUR billing data
+              designation: Cloud Management Platform 개발
+              description: 2021.07 ~ 현재<br> - CMP(Cloud Management Platform) 개발 및 유지보수<br> - Maintain Company's AWS Infrastructure<br> - Handling AWS CUR billing data
               visibility: true
             - company_name: 솔트웨어 주식회사
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
-              designation: Technical Support Manager
-              description: <i>Period 2017.09 ~ 2021.07</i><br> - AWS Partner Technical Support Manager<br> - AWS Partner Immersionday Instructor
+              designation: 기술 지원 매니저
+              description: 2017.09 ~ 2021.07<br> - AWS Partner Technical Support Manager<br> - AWS Partner Immersionday Instructor
               visibility: true
 
 # Education

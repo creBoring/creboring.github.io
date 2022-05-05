@@ -8,8 +8,8 @@ layout: default
       <a href="/">
         <img src="{{site.url}}{{site.baseurl}}/assets/img/{{ site.author_logo }}" class="profile-img" />
       </a>
-      <h1 class="profile-name">{{ site.title }}</h1>
-      <p class="profile-bio">{{ site.subtitle }}</p>
+      <h1 class="profile-name">{{ site.author_kr }}</h1>
+      <p class="profile-bio">{{ site.author_description }}</p>
       {% if site.github_username %} {%- include github_follow_button.html -%} {%
       endif %}
 
@@ -49,13 +49,6 @@ layout: default
         >
           <i class="fab fa-github"></i>
         </a>
-        {% endif %} {% if site.behance_username %}
-        <a
-          class="social-link"
-          href="http://behance.net/{{ site.behance_username }}"
-        >
-          <i class="fab fa-behance"></i>
-        </a>
         {% endif %} {% if site.linkedin_username %}
         <a
           class="social-link"
@@ -63,26 +56,9 @@ layout: default
         >
           <i class="fab fa-linkedin-in"></i>
         </a>
-        {% endif %} {% if site.telegram_username %}
-        <a class="social-link" href="http://t.me/{{ site.telegram_username }}">
-          <i class="fab fa-telegram-plane"></i>
-        </a>
-        {% endif %} {% if site.dribbble_username %}
-        <a
-          class="social-link"
-          href="https://dribbble.com/{{ site.dribbble_username }}"
-        >
-          <i class="fab fa-dribbble"></i>
-        </a>
-        {% endif %} {% if site.flickr_username %}
-        <a
-          class="social-link"
-          href="https://www.flickr.com/photos/{{ site.flickr_username }}"
-        >
-          <i class="fab fa-flickr"></i>
-        </a>
         {% endif %}
       </p>
+
 
       {% if site.author_location %}
       <h6><i class="fas fa-map-marker-alt"></i> {{ site.author_location }}</h6>
@@ -127,9 +103,8 @@ layout: default
   <div class="col-lg-8">
     {% if site.author_bio %}
     <div class="card card-border">
-      <br/>
-      <br/>
-      <h1 class="card-title">About</h1>
+      <h2 class="card-title">About</h2>
+      <hr>
       <p>{{ site.author_bio }}</p>
       <br/>
 <!--    </div>-->
@@ -163,8 +138,8 @@ layout: default
 <!--    </div>-->
     {% endif %} {% if site.show_author_work_experiences == true %}
 <!--    <div class="card card-border">-->
-      <br/>
-      <h1 class="card-title">Work Experience</h1>
+      <h2 class="card-title">Work Experience</h2>
+      <hr>
       <br />
       {% for exp in site.author_work_experiences %} {% if exp.visibility == true %}
       <div class="row">
@@ -186,8 +161,8 @@ layout: default
 <!--    </div>-->
     {% endif %} {% if site.show_author_education_details == true %}
 <!--    <div class="card card-border">-->
-      <br/>
-      <h1 class="card-title">Education</h1>
+      <h2 class="card-title">Education</h2>
+      <hr>
       <br />
       {% for detail in site.author_education_details %} {% if detail.visibility
       == true %}
