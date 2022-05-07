@@ -1,4 +1,4 @@
-title: 기술공방
+title: 잡다한 기술공방
 subtitle: 근데 이제 IT를 곁들인
 description: >- # this means to ignore newlines until "baseurl:"
   devlopr-jekyll is a beautiful Jekyll Theme Built For Developers, which is optimized for speed and readability.
@@ -34,13 +34,21 @@ author_work_experiences:
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: Cloud Management Platform 개발
-              description: 2021.07 ~ 현재<br> - CMP(Cloud Management Platform) 개발 및 유지보수<br> - Maintain Company's AWS Infrastructure<br> - Handling AWS CUR billing data
+              period: 2021.07 ~ 현재
+              descriptions:
+                - CMP(Cloud Management Platform) 개발 및 유지보수<br>
+                - 사내 AWS 인프라 관리 및 유지보수<br>
+                - AWS CUR 빌링 데이터 핸들링
               visibility: true
             - company_name: 솔트웨어 주식회사
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: 기술 지원 매니저
-              description: 2017.09 ~ 2021.07<br> - AWS Partner Technical Support Manager<br> - AWS Partner Immersionday Instructor
+              period: 2017.09 ~ 2021.07
+              descriptions:
+                - AWS 파트너사 기술 지원 매니저
+                - 고객사 AWS 인프라 구성 구축 및 유지보수
+                - AWS 파트너사 Immersionday 강사
               visibility: true
 
 # Education
@@ -48,14 +56,16 @@ author_education_details:
               - college_logo: kpu.png
                 college_name: 한국산업기술대학교
                 college_url: https://www.kpu.ac.kr
-                college_degree: Information Communication Technology Engineering
-                description: Bachelor of Technology
+                college_degree: 정보통신기술공학과
+                description: 한국산업기술대학교 주말 4년제 ICT 학과
+                period: 2018.03 ~ 2022.02
                 visibility: true
               - college_logo: dsm.png
                 college_name: 대덕소프트웨어마이스터고등학교
                 college_url: https://dsmhs.djsch.kr
-                college_degree: Software Development
-                description: Software Meister Highschool
+                college_degree: 소프트웨어개발과
+                description: 소프트웨어 개발 전문 마이스터 고등학교
+                period: 2015.03 ~ 2018.02
                 visibility: true
 
 # Certificates

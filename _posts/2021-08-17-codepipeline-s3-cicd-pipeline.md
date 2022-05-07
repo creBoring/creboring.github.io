@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[CodePipeline] S3 CI/CD 파이프라인 구축하기 - 이론편"
-summary: "CodePipeline을 이용한 S3 CI/CD 구축하기"
+summary: "CodePipeline을 이용해 Amazon S3에 자동으로 배포하는 파이프라인을 구축합니다."
 author: creboring
 date: '2021-08-17 9:52:20 +0530'
 category: AWS

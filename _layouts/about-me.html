@@ -144,20 +144,25 @@ layout: default
       {% for exp in site.author_work_experiences %} {% if exp.visibility == true %}
       <div class="row">
         <div class="col-md-2">
+          <a href="{{exp.company_url}}">
           <img
             src="{{site.url}}{{site.baseurl}}/assets/img/{{ exp.company_logo }}"
             class="company-logo"
           />
+          </a>
         </div>
         <div class="col-md-9">
           <h4 class="experience-title">{{ exp.designation }}</h4>
-          <h6 class="experience-info"><a href="{{exp.company_url}}">{{ exp.company_name}}</a></h6>
-          <p class="experience-desc">{{ exp.description }}</p>
-          <br>
+          <h6 class="experience-info"><a href="{{exp.company_url}}">{{ exp.company_name}}</a> &nbsp;&nbsp; <span style="color: #888; font-size: 15px;"><i>{{ exp.period}}</i> </span></h6>
+          {% for description in exp.descriptions %}
+          <li>{{description}}</li>
+          {% endfor %}
+          <!--          <p class="experience-desc">{{ exp.description }}</p>-->
         </div>
       </div>
+      <br>
+      <br>
       {% endif %} {% endfor %}
-      <br/>
 <!--    </div>-->
     {% endif %} {% if site.show_author_education_details == true %}
 <!--    <div class="card card-border">-->
@@ -173,9 +178,9 @@ layout: default
             class="company-logo"
           />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
           <h4 class="experience-title">{{detail.college_degree }}</h4>
-          <h6 class="experience-info"><a href="{{detail.college_url}}">{{detail.college_name}}</a></h6>
+          <h6 class="experience-info"><a href="{{detail.college_url}}">{{detail.college_name}}</a> &nbsp;&nbsp; <span style="color: #888; font-size: 15px;"><i>{{ detail.period}}</i> </span></h6>
           <p class="experience-desc">{{detail.description}}</p>
           <br>
         </div>

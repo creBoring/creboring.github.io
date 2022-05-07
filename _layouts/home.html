@@ -21,10 +21,10 @@ layout: full-width
         <div id="recent-articles-header">
           <div id="recent-articles-title">
             <h2 class="card-title">최근 게시물</h2>
-              <hr>
+            <hr>
           </div>
           <div id="recent-articles-show-all">
-            <a class="btn btn-lg btn-dark" href="/blog"> View All </a>
+            <a class="btn btn-lg btn-dark" href="/blog"> 전체 보기 </a>
           </div>
         </div>
         <br />
@@ -40,17 +40,18 @@ layout: full-width
                     {% if author %}
                      {% assign author_data = site.data.authors[author] %}
                      <img
-                      src="{{site.url}}{{site.baseurl}}/assets/img/authors/{{author_data.avatar}}"
-                      width="50px"
-                      height="50px"
+                      src="{{site.url}}{{site.baseurl}}{{post.thumbnail}}"
+                      width="150px"
+                      height="75px"
                    />
                     {% endif %}
                   {% endif %}
 
                 </div>
                 <div id="article-link">
-                    <p class="recent-article-link">{{post.title}} <span style="color: #ccc; font-size: 15px;"> - <i><time datetime="{{ post.date }}" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</time></i></span></p>
-                  </div>
+                    <span class="recent-article-link"><b>{{post.title}}</b> <span style="color: #ccc; font-size: 15px;"> - <i><time datetime="{{ post.date }}" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</time></i></span></span>
+                    <span style="color: #777; font-size: 16px;">{{ post.summary }}</span>
+                    </div>
                   <div id="article-alert">
                   {% for cat in post.category limit:1 %}
                    <button class="btn btn-sm btn-dark">{{cat}}</button>

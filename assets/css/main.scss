@@ -99,7 +99,20 @@ code {
   margin-bottom: 75px !important;
 }
 
+.btn-lg {
+  font-size: 1rem !important;
+}
+
+#article-container > #article-img > img {
+  object-fit: cover;
+}
+
 /* About me Page */
+.company-logo {
+  border-radius: 10%;
+  box-shadow:-2px 0px 5px -6px #000000,
+             2px 0px 5px -6px #000000;
+}
 
 #author_certifications {
   .certificate-row {
@@ -112,7 +125,7 @@ code {
     margin-top:-20px;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 10%;
   }
 
   .certificate-name {

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Source 편"
-summary: "CodePipeline을 이용한 S3 CI/CD 구축하기 - Source편"
+summary: "CodeCommit에 소스코드를 배포하여 파이프라인의 소스를 구성합니다."
 author: creboring
 date: '2022-03-07 22:37:18 +0530'
 category: AWS
