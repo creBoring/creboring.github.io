@@ -107,6 +107,7 @@ code {
   object-fit: cover;
 }
 
+
 /* About me Page */
 .company-logo {
   border-radius: 10%;
@@ -131,4 +132,10 @@ code {
   .certificate-name {
     font-size: 14px;
   }
+}
+
+
+/* Blog Page */
+figure {
+  text-align: center;
 }
