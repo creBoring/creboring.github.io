@@ -2,10 +2,18 @@
 layout: default
 ---
 
+
 <div class="row justify-content-center" id="blog-post-container">
-  <div class="col-lg-10">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-9">
     {%- include blog_post_article.html -%}
      {%- include blog_post_comments.html-%}
+  </div>
+  <div class="col-lg-2">
+      <div class="toc">
+        <a href="#">맨 위로</a>
+        {% include toc.html html=content %}
+      </div>
   </div>
 </div>
 <div class="row">
@@ -40,3 +48,69 @@ layout: default
   </div>
 </div>
 
+
+<script>
+  function getHeaderNodes(master) {
+    const nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    const headerNodes = nodes.filter(function(elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function(elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+
+  const article = document.getElementsByClassName("container")[0];
+  const articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  const toc = document.getElementsByClassName("toc")[0];
+
+  const headerNodes = getHeaderNodes(article);
+  const tocNodes = getTOCNodes(toc);
+
+  let before = undefined;
+  document.addEventListener('scroll', function(e) {
+    if (window.scrollY >= articleY + 140) {
+      toc.style.cssText = "position: fixed; top:100px;";
+    } else {
+      toc.style.cssText = "";
+    }
+
+    let current = headerNodes.filter(function(header) {
+      let headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 140;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length-1];
+
+      let currentA = tocNodes.filter(function(tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      });
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+  }, false);
+</script>

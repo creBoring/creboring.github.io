@@ -7,10 +7,11 @@
 
 /* custom css goes below */
 
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px !important;
-  }
+/* 변수 처리 */
+:root {
+  --default-toc-color: #505050;
+  --default-toc-theme-color: var(--link-color);
+  --default-toc-border-color: #505050;
 }
 
 .jumbotron-heading {
@@ -149,4 +150,69 @@ figure {
 .blog-post {
   width: 100% !important;
   margin: 10px !important;
+}
+
+
+/* Post Page */
+
+.toc-container {
+  position:relative;
+  width:100%;
+  height:100%;
+  margin-top:80px;
+}
+
+.toc {
+  position: absolute;
+  top: 240px;
+  width: 100%;
+  color: var(--default-toc-color) !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  margin-right: 0px;
+  font-size: 1rem;
+  border-left: 2px solid var(--default-toc-border-color);
+
+  display: none;
+  @media (min-width: 75em){
+    width: 240px;
+    display: block;
+  }
+  @media (min-width: 85em){
+    width: 300px;
+    display: block;
+  }
+  @media (min-width: 95em){
+    width: 360px;
+    display: block;
+  }
+
+  a.toc-active {
+    font-weight: bold;
+    transition: all 0.125s ease-in 0s;
+    font-size: 1.2rem;
+    color: var(--default-toc-theme-color) !important;
+  }
+
+  ul {
+    list-style-type: none !important;
+    margin-bottom: 0.1rem;
+    padding-left: 0rem;
+    li {
+      padding-left: .5rem;
+    }
+  }
+
+  a {
+    color: var(--default-toc-color) !important;
+    text-decoration: none !important;
+  }
+
+  a:hover {
+    color:var(--default-toc-theme-color) !important;
+  }
 }

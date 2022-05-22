@@ -11,7 +11,7 @@ permalink: /blog/codepipeline-s3-cicd-pipeline-3/
 usemathjax: true
 ---
 
-## **들어가며**
+## 들어가며
 ---
 이 글은 앞선 **[[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Source 편][link_2]{:target="_blank"}** 을 잇는 **Build 편입니다**. 
 
@@ -51,7 +51,7 @@ CodeBuild는 Source 단계로부터 넘겨받은 소스코드를 통해 **배포
 
 <img src="/assets/img/posts/2021-08-17/CodeBuild.png" class="img-fluid"/>
 
-##### **<u># CodeBuild 프로젝트 생성</u>**
+**<u># CodeBuild 프로젝트 생성</u>**
 1. AWS 콘솔에서 **CodeBuild** 페이지로 이동합니다.
 2. 프로젝트 생성 페이지로 넘어가서, 아래와 같이 항목들을 입력합니다.
    - 프로젝트 이름
@@ -65,8 +65,9 @@ CodeBuild는 Source 단계로부터 넘겨받은 소스코드를 통해 **배포
       - 환경 유형: Linux
 3. 이후 프로젝트 생성해줍니다.
 
+<br>
 
-## 빌드 스크립트 작성
+### 빌드 스크립트 작성
 ---
 아래는 이번 실습에 사용할 *buildspec.yml* 파일입니다. (소스코드 내에 포함되어 있습니다.)
 ``` yaml
@@ -91,11 +92,9 @@ artifacts:
 
 위 yml 파일의 경우 각각 다음과 같은 동작을 수행하도록 정의되어 있습니다.
 
-##### **<u># Phases (단계) </u>**
+**<u># Phases (단계) </u>**
 - **install** : 빌드를 동작하기 위한 런타임 환경을 제공합니다. 이번 실습에서는 Nodejs, 그 중에서도 14 버전을 사용합니다.
-
 - **pre_build** : npm을 통해 필요 모듈들 설치 (npm install)
-
 - **build** : npm run script를 통해 패키징 작업 수행 (npm run build)
 
 위 `npm run build`를 수행하고 나면 dist 라는 디렉토리에 결과물이 저장되는데, buildspec에서 **artifacts**의 **base-directory**로 `'dist'`, **files**로 `'**/*'`를 지정함으로써, dist 폴더 내의 모든 파일들을 다음 단계로 넘겨라는 의미의 스크립트가 작성됩니다.
