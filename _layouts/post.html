@@ -75,15 +75,15 @@ layout: default
 
   let before = undefined;
   document.addEventListener('scroll', function(e) {
-    if (window.scrollY >= articleY + 140) {
-      toc.style.cssText = "position: fixed; top:100px;";
+    if (window.scrollY >= articleY + 70) {
+      toc.style.cssText = "position: fixed; top:170px;";
     } else {
       toc.style.cssText = "";
     }
 
     let current = headerNodes.filter(function(header) {
       let headerY = window.pageYOffset + header.getBoundingClientRect().top;
-      return window.scrollY >= headerY - 140;
+      return window.scrollY >= headerY - 70;
     });
 
     if (current.length > 0) {
