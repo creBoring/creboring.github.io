@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Build 편"
+title: "[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Build"
 summary: "소스코드를 빌드하여 배포본을 만듭니다."
 author: creboring
 date: '2022-05-16 22:26:47 +0530'
