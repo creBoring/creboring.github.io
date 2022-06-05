@@ -152,6 +152,26 @@ figure {
   margin: 10px !important;
 }
 
+.post-thumbnail {
+  position: absolute;
+  top:45px;
+  left:0;
+  height:500px;
+  width:100%;
+
+  text-align: center;
+  background-color: rgba(0,0,0,0.75);
+}
+
+.post-thumbnail > .card-img-top {
+  height:100% !important;
+  width: auto !important;
+}
+
+#blog-post-container {
+  margin-top: 500px !important;
+}
+
 
 /* Post Page */
 
@@ -165,7 +185,7 @@ figure {
 /* TOC 관련 css */
 .toc {
   position: absolute;
-  top: 240px;
+  top: 150px;
   width: 100%;
   color: var(--default-toc-color) !important;
   overflow-y: auto;

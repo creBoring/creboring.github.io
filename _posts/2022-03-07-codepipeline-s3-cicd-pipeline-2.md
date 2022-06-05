@@ -11,8 +11,7 @@ permalink: /blog/codepipeline-s3-cicd-pipeline-2/
 usemathjax: true
 ---
 
-## 들어가며
----
+
 이 글은 앞선 **[[CodePipeline] S3 CI/CD 파이프라인 구축하기 - 이론편][link_1]{:target="_blank"}** 을 잇는 **Source 편입니다**. 
 
 이번 게시글에서는 이론편에서 설명한 **S3 CI/CD 파이프라인의 소스 단계를 구축합니다**. 형상관리 툴로는 `Git`을 사용할 예정이며, AWS 관리형 서비스인 `CodeCommit` 을 사용하여 원격 레포지토리 생성 후 소스코드를 배포해보겠습니다.

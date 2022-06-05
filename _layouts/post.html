@@ -2,6 +2,12 @@
 layout: default
 ---
 
+<div class="post-thumbnail">
+  <img class="card-img-top"
+       src="{{site.url}}{{site.baseurl}}{{ page.thumbnail }}"
+       alt="{{ post.title }}"
+  />
+</div>
 
 <div class="row justify-content-center" id="blog-post-container">
   <div class="col-lg-1"></div>
@@ -75,7 +81,7 @@ layout: default
 
   let before = undefined;
   document.addEventListener('scroll', function(e) {
-    if (window.scrollY >= articleY + 70) {
+    if (window.scrollY >= articleY - 20) {
       toc.style.cssText = "position: fixed; top:170px;";
     } else {
       toc.style.cssText = "";
@@ -83,7 +89,7 @@ layout: default
 
     let current = headerNodes.filter(function(header) {
       let headerY = window.pageYOffset + header.getBoundingClientRect().top;
-      return window.scrollY >= headerY - 70;
+      return window.scrollY >= headerY - 100;
     });
 
     if (current.length > 0) {

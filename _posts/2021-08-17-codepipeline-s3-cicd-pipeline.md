@@ -10,8 +10,7 @@ keywords: how to use code series, frontend aws cicd, frontend code series
 permalink: /blog/codepipeline-s3-cicd-pipeline/
 usemathjax: true
 ---
-## 들어가며
----
+
 본 게시글은 주로 프런트엔드(Web)에서 많이 사용되는 정적 소스코드를 `Amazon S3` 에 **자동으로 배포**하는 과정을 다룹니다. CI/CD 구축은 프런트엔드, 백엔드 구분 없이 소스코드에 대한 빌드와 배포과정을 자동화하여 개발자로 하여금 개발에만 집중할 수 있는 환경을 제공해줍니다.
 
 해당 자동화 방법이나 배포 대상은 매우 다양하나, 현 게시글에서는 `Amazon Web Service` 의 `Code 시리즈` 를 사용하여 **S3 정적 웹 호스팅**에 배포하는 방법을 다루고 있습니다. Code 시리즈, 또는 S3에 대해 생소하신 분들은 아래 게시글을 먼저 읽고 오실 것을 권고드립니다.

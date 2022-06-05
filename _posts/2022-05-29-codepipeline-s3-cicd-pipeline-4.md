@@ -11,8 +11,6 @@ permalink: /blog/codepipeline-s3-cicd-pipeline-4/
 usemathjax: true
 ---
 
-## 들어가며
----
 이 글은 앞선 **[[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Build 편][link_2]{:target="_blank"}** 을 잇는 **Deploy 편입니다**.
 
 이번 게시글에서는 Build 편에서 패키징된 소스코드를 `Amazon S3`에 배치하는 **CodePipeline 파이프라인**을 만들 것입니다.

@@ -11,8 +11,6 @@ permalink: /blog/codepipeline-s3-cicd-pipeline-3/
 usemathjax: true
 ---
 
-## 들어가며
----
 이 글은 앞선 **[[CodePipeline] S3 CI/CD 파이프라인 구축하기 - Source 편][link_2]{:target="_blank"}** 을 잇는 **Build 편입니다**. 
 
 이번 게시글에서는 Source 편에서 배포한 소스코드를 빌드하여 **배포할 수 있는 아티팩트를 만들 것입니다**. 예제 소스코드는 `Nodejs` 를 사용하고 있기 때문에 `npm` 패키지 매니저로 빌드를 수행합니다.
