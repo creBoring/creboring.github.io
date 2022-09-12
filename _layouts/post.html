@@ -17,7 +17,7 @@ layout: default
   </div>
   <div class="col-lg-2">
       <div class="toc">
-        <a href="#">맨 위로</a>
+        <a href="#" class="toc-active">맨 위로</a>
         {% include toc.html html=content %}
       </div>
   </div>
@@ -56,6 +56,28 @@ layout: default
 
 
 <script>
+  let article = undefined;
+  let articleY = undefined;
+  let toc = undefined;
+
+  let titleNode = undefined;
+  let headerNodes = undefined;
+  let tocNodes = undefined;
+
+  let before = undefined;
+  let current = undefined;
+
+  function initToc() {
+    article = document.getElementsByClassName("container")[0];
+    articleY = window.pageYOffset + article.getBoundingClientRect().top;
+    toc = document.getElementsByClassName("toc")[0];
+
+    headerNodes = getHeaderNodes(article);
+    tocNodes = getTOCNodes(toc);
+
+    before = tocNodes[0];
+  }
+
   function getHeaderNodes(master) {
     const nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
     const headerNodes = nodes.filter(function(elem) {
@@ -63,6 +85,7 @@ layout: default
     });
     return headerNodes;
   }
+
   function getTOCNodes(master) {
     var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
     var tocNodes = nodes.filter(function(elem) {
@@ -71,52 +94,68 @@ layout: default
     return tocNodes;
   }
 
-  const article = document.getElementsByClassName("container")[0];
-  const articleY = window.pageYOffset + article.getBoundingClientRect().top;
+  function initEventListener() {
+    document.addEventListener('scroll', function(e) {
+      setTocPosition();
 
-  const toc = document.getElementsByClassName("toc")[0];
+      const currentHeader = findCurrentHeaderNode();
+      if(currentHeader == undefined) {
+        if(before) {
+          before.classList.remove("toc-active");
+        }
+      }
 
-  const headerNodes = getHeaderNodes(article);
-  const tocNodes = getTOCNodes(toc);
+      const currentToc = findCurrentTocNode(currentHeader);
+      if (currentToc) {
+        if (before == undefined) before = currentToc;
+        if (before != currentToc) {
+          before.classList.remove("toc-active");
+          before = currentToc;
+        }
+        currentToc.classList.add("toc-active");
+      }
+      else {
+        if (before) {
+          before.classList.remove("toc-active");
+        }
+      }
 
-  let before = undefined;
-  document.addEventListener('scroll', function(e) {
-    if (window.scrollY >= articleY - 20) {
-      toc.style.cssText = "position: fixed; top:170px;";
-    } else {
-      toc.style.cssText = "";
-    }
+    }, false);
+  }
 
-    let current = headerNodes.filter(function(header) {
+  function setTocPosition() {
+      if (window.scrollY >= articleY - 20) {
+        toc.style.cssText = "position: fixed; top:170px;";
+      } else {
+        toc.style.cssText = "";
+      }
+  }
+
+  function findCurrentHeaderNode() {
+    const passedNodes = headerNodes.filter(function(header) {
       let headerY = window.pageYOffset + header.getBoundingClientRect().top;
       return window.scrollY >= headerY - 100;
     });
-
-    if (current.length > 0) {
-      current = current[current.length-1];
-
-      let currentA = tocNodes.filter(function(tocNode) {
-        return tocNode.innerHTML == current.innerHTML;
-      });
-
-      currentA = currentA[0];
-      if (currentA) {
-        if (before == undefined) before = currentA;
-
-        if (before != currentA) {
-          before.classList.remove("toc-active");
-          before = currentA;
-        }
-        currentA.classList.add("toc-active");
-      }
-      else {
-        if (before)
-          before.classList.remove("toc-active");
-      }
+    if (passedNodes.length > 0) {
+      return passedNodes[passedNodes.length-1];
+    } else {
+      return undefined;
     }
-    else {
-      if (before)
-        before.classList.remove("toc-active");
+  }
+
+  function findCurrentTocNode(currentHeader) {
+    if(currentHeader == undefined) {
+      return tocNodes[0];
     }
-  }, false);
+
+    const currentToc = tocNodes.filter(function(tocNode) {
+      return tocNode.innerHTML == currentHeader.innerHTML;
+    })[0];
+    return currentToc ? currentToc : tocNodes[0];
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initToc();
+    initEventListener();
+  });
 </script>
