@@ -9,9 +9,9 @@
 
 /* 변수 처리 */
 :root {
-  --default-toc-color: #505050;
+  --default-toc-color: #777777;
   --default-toc-theme-color: var(--link-color);
-  --default-toc-border-color: #505050;
+  --default-toc-border-color: #777777;
 }
 
 .jumbotron-heading {
@@ -63,9 +63,22 @@ code {
   padding: 0.2em 0.4em;
 }
 
+.col-lg-left-border {
+  border-left: 1px solid rgb(230, 230, 230);
+}
 
 .navbar {
   font-family: 'Quicksand', sans-serif !important;
+}
+
+.navbar-top {
+  width:100%;
+  display:flex;
+  align-items: center;
+}
+
+.navbar-expand-lg {
+  justify-content: center !important;
 }
 
 .post-title {
@@ -73,12 +86,20 @@ code {
   font-weight: bold;
 }
 
-.post-summary {
-  font-size: 16px !important;
+.post-pre {
+  display: flex;
+  justify-content:space-between;
+  font-size: 16px;
+  color: #777777;
 }
 
 .post-meta {
   color: #777777 !important;
+}
+
+.row {
+  margin-left:0px !important;
+  margin-right:0px !important;
 }
 
 .card {
@@ -195,9 +216,9 @@ figure {
   padding-right: 0.75rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  margin-left:1rem;
   margin-right: 0px;
   font-size: 1rem;
-  border-left: 2px solid var(--default-toc-border-color);
 
   display: none;
   @media (min-width: 75em){
@@ -248,7 +269,21 @@ h2:target::before, h3:target::before {
   pointer-events: none;
 }
 
+@media (min-width: 1200px) {
+  .navbar-top {
+    max-width: 1140px;
+  }
+}
+
 @media (max-width: 75em){
+  .navbar-top {
+    justify-content: space-between;
+  }
+
+  .navbar-brand {
+    margin-right: 0px !important;
+  }
+
   .container {
     margin: 0px !important;
     padding: 0px !important;

@@ -10,12 +10,11 @@ layout: default
 </div>
 
 <div class="row justify-content-center" id="blog-post-container">
-  <div class="col-lg-1"></div>
-  <div class="col-lg-9">
+  <div class="col-lg-9 col-lg-left-border">
     {%- include blog_post_article.html -%}
      {%- include blog_post_comments.html-%}
   </div>
-  <div class="col-lg-2">
+  <div class="col-lg-3 col-lg-left-border">
       <div class="toc">
         <a href="#" class="toc-active">맨 위로</a>
         {% include toc.html html=content %}
@@ -95,32 +94,33 @@ layout: default
   }
 
   function initEventListener() {
-    document.addEventListener('scroll', function(e) {
-      setTocPosition();
+    document.addEventListener('scroll', doToc, false);
+  }
 
-      const currentHeader = findCurrentHeaderNode();
-      if(currentHeader == undefined) {
-        if(before) {
-          before.classList.remove("toc-active");
-        }
-      }
+  function doToc() {
+    setTocPosition();
 
-      const currentToc = findCurrentTocNode(currentHeader);
-      if (currentToc) {
-        if (before == undefined) before = currentToc;
-        if (before != currentToc) {
-          before.classList.remove("toc-active");
-          before = currentToc;
-        }
-        currentToc.classList.add("toc-active");
+    const currentHeader = findCurrentHeaderNode();
+    if(currentHeader == undefined) {
+      if(before) {
+        before.classList.remove("toc-active");
       }
-      else {
-        if (before) {
-          before.classList.remove("toc-active");
-        }
-      }
+    }
 
-    }, false);
+    const currentToc = findCurrentTocNode(currentHeader);
+    if (currentToc) {
+      if (before == undefined) before = currentToc;
+      if (before != currentToc) {
+        before.classList.remove("toc-active");
+        before = currentToc;
+      }
+      currentToc.classList.add("toc-active");
+    }
+    else {
+      if (before) {
+        before.classList.remove("toc-active");
+      }
+    }
   }
 
   function setTocPosition() {
@@ -156,6 +156,7 @@ layout: default
 
   document.addEventListener('DOMContentLoaded', () => {
     initToc();
+    doToc();
     initEventListener();
   });
 </script>
