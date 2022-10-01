@@ -10,7 +10,8 @@ layout: default
 </div>
 
 <div class="row justify-content-center" id="blog-post-container">
-  <div class="col-lg-9 col-lg-left-border">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-8 col-lg-left-border">
     {%- include blog_post_article.html -%}
      {%- include blog_post_comments.html-%}
   </div>
@@ -125,7 +126,7 @@ layout: default
 
   function setTocPosition() {
       if (window.scrollY >= articleY - 20) {
-        toc.style.cssText = "position: fixed; top:170px;";
+        toc.style.cssText = "position: fixed; top:220px;";
       } else {
         toc.style.cssText = "";
       }
