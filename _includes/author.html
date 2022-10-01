@@ -4,23 +4,25 @@
     </div>
     <div class="card-body">
         <div class="row">
-                <div class="col-md-4">
-                        {% if author.avatar_url %}
-                        <img class="author-profile-img" src="/assets/img/authors/{{author.avatar_url}}" alt="{{author.name}}" />
-                      {% else %}
-                        <img class="author-profile-img" src="{{site.url}}/assets/img/authors/{{author.avatar}}" alt="{{author.name}}" />
-                      {% endif %}
-                </div>
-                <div class="col-md-6">
-                        <p class="author_bio">{{author.bio}}</p>
-                        <p><b>Email</b> {{author.email}}<br>
-                           <b>Website</b> <a href="{{author.site}}" target="_blank">{{author.site}}</a></p>
-                        <p class="profile-links">
-                            {% for network in author.social %}
-                                <a class="social-link" href="{{ network.url }}" target="_blank"><i class="fab fa-{{ network.title }} fa-fw"></i></a>
-                            {% endfor %}
-                        </p>
-                </div>
+          <div class="col-md-4">
+                  {% if author.avatar_url %}
+                  <img class="author-profile-img" src="/assets/img/authors/{{author.avatar_url}}" alt="{{author.name}}" />
+                {% else %}
+                  <img class="author-profile-img" src="{{site.url}}/assets/img/authors/{{author.avatar}}" alt="{{author.name}}" />
+                {% endif %}
+          </div>
+          <div class="col-md-7">
+            <p class="author_bio">{{author.bio}}</p>
+            <p>
+              <small><b>Email</b> <a href="mailto:{{author.email}}">{{author.email}}</a></small><br>
+              <small><b>Website</b> <a href="{{author.site}}" target="_blank">{{author.site}}</a></small>
+            </p>
+            <span class="profile-links">
+              {% for network in author.social %}
+                <a class="social-link" href="{{ network.url }}" target="_blank"><i class="fab fa-{{ network.title }} fa-fw"></i></a>
+              {% endfor %}
+            </span>
+          </div>
         </div>
     </div>
 </div>

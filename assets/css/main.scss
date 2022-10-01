@@ -87,6 +87,11 @@ article dl, article ol, article ul {
   padding-bottom: 1.5rem;
 }
 
+.navbar-dark .navbar-nav a.nav-link:hover {
+  color: #ff7601 !important;
+}
+
+
 .col-lg-left-border {
   border-left: 1px solid rgb(230, 230, 230);
 }
@@ -162,9 +167,20 @@ article dl, article ol, article ul {
 
 /* About me Page */
 .company-logo {
+  width: 5rem !important;
+  height: 5rem !important;
   border-radius: 10%;
   box-shadow:-2px 0px 5px -6px #000000,
              2px 0px 5px -6px #000000;
+}
+
+.about-info-row {
+  padding: 1rem 0 1.5rem 0;
+}
+
+
+.about-info-list {
+  font-size: 1rem !important;
 }
 
 #author_certifications {
@@ -352,3 +368,16 @@ h2:target::before, h3:target::before {
     display: none;
   }
 }
+
+// 공통 ===============
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.padding-top-1 {
+  padding-top: 1rem !important;
+}
+
+// 공통 end ===========
