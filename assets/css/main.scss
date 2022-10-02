@@ -96,6 +96,10 @@ article dl, article ol, article ul {
   border-left: 1px solid rgb(230, 230, 230);
 }
 
+.col-lg-right-border {
+  border-right: 1px solid rgb(230, 230, 230);
+}
+
 .navbar {
   font-family: 'Quicksand', sans-serif !important;
 }
@@ -249,7 +253,6 @@ figure {
   padding-right: 0.75rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  margin-left:1rem;
   margin-right: 0px;
   font-size: 1rem;
 

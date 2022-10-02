@@ -10,12 +10,12 @@ layout: default
 </div>
 
 <div class="row justify-content-center" id="blog-post-container">
-  <div class="col-lg-1"></div>
+  <div class="col-lg-1 col-lg-left-border"></div>
   <div class="col-lg-8 col-lg-left-border">
     {%- include blog_post_article.html -%}
     {%- include blog_post_comments.html-%}
   </div>
-  <div class="col-lg-3 col-lg-left-border">
+  <div class="col-lg-3 col-lg-left-border col-lg-right-border">
       <div class="toc">
         <a href="#" class="toc-active">맨 위로</a>
         {% include toc.html html=content %}
