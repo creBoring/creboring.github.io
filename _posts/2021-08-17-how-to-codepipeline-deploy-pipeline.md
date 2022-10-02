@@ -11,10 +11,6 @@ permalink: /blog/how-to-codepipeline-deploy-pipeline/
 usemathjax: true
 ---
 
-> 본 게시글에 대한 질문이나 보완점은 댓글로 남겨주시면 감사하겠습니다.
-
-## 들어가며
-
 <figure>
     <img style="width:60%;" src="/assets/img/posts/2021-08-17/why_automation.jpeg" class="img-fluid">
     <figcaption><small>"세상에서 가장 빠른 것은?"</small></figcaption>
@@ -180,7 +176,7 @@ CodePipeline은 이렇듯 Event를 이용하여 각 단계를 연결시켜주고
 
 > AWS 콘솔은 주기적으로 많이 업데이트되고 변경됩니다. 단순히 화면을 따라하시기 보다는, 내용을 이해하시고 이에 부합한 버튼과 입력을 해주시면 되겠습니다.
 
-### 출처
+## 출처
 
 - <small>사진 출처 / <a href="http://www.freepik.com">Designed by pch.vector / Freepik</a></small>
 

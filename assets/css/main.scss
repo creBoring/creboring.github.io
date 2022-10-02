@@ -12,6 +12,7 @@
   --default-toc-color: #777777;
   --default-toc-theme-color: var(--link-color);
   --default-toc-border-color: #777777;
+  --default-border-color: rgb(230, 230, 230);
 }
 
 .jumbotron-heading {
@@ -30,9 +31,8 @@ p {
 }
 
 h2 {
-  margin-top: -2.5rem !important;
+  margin-top: 2.5rem !important;
   margin-bottom: 1.5rem !important;
-  padding-top: 5rem !important;
   padding-bottom: 1rem;
   border-bottom:1px solid rgb(230, 230, 230);
 
@@ -41,9 +41,8 @@ h2 {
 }
 
 h3, h4 {
-  margin-top: -2.5rem !important;
+  margin-top: 2rem !important;
   margin-bottom: 0 !important;
-  padding-top: 4.5rem;
   padding-bottom: 0.75rem;
   font-weight: bold !important;
   font-size: 1.5rem !important;
@@ -92,17 +91,16 @@ article dl, article ol, article ul {
   color: #ff7601 !important;
 }
 
+.navbar-dark .navbar-brand {
+  font-weight: bold;
+}
 
 .col-lg-left-border {
-  border-left: 1px solid rgb(230, 230, 230);
+  border-left: 1px solid var(--default-border-color);
 }
 
 .col-lg-right-border {
-  border-right: 1px solid rgb(230, 230, 230);
-}
-
-.navbar {
-  font-family: 'Quicksand', sans-serif !important;
+  border-right: 1px solid var(--default-border-color);
 }
 
 .navbar-top {
@@ -245,8 +243,8 @@ figure {
 /* TOC 관련 css */
 .toc {
   position: absolute;
-  top: 200px;
-  width: 100%;
+  top: 168px;
+  width: 265px;
   color: var(--default-toc-color) !important;
   overflow-y: auto;
   overflow-x: hidden;
@@ -258,16 +256,7 @@ figure {
   font-size: 1rem;
 
   display: none;
-  @media (min-width: 75em){
-    width: 240px;
-    display: block;
-  }
-  @media (min-width: 85em){
-    width: 300px;
-    display: block;
-  }
-  @media (min-width: 95em){
-    width: 360px;
+  @media (min-width: 992px){
     display: block;
   }
 
@@ -297,14 +286,16 @@ figure {
   }
 }
 
-h2:target::before, h3:target::before {
+.toc:before {
   content: "";
   display: block;
-  height: 100px; /* fixed header height*/
-  margin-top: -100px; /* negative fixed header height */
-  visibility: hidden;
-  pointer-events: none;
+  width: 96%;
+  height: 1px;
+  margin: 0 2% 1rem 2%;
+  // margin-bottom: 1rem;
+  background-color: var(--default-border-color);
 }
+
 
 @media (min-width: 1200px) {
   .navbar-top {
@@ -383,6 +374,26 @@ h2:target::before, h3:target::before {
 .padding-top-1 {
   margin-top: -2.5rem !important;
   padding-top: 3.5rem !important;
+}
+
+.col-lg-10-05 {
+  flex: 0 0 5% !important;
+  max-width: 5% !important;
+}
+
+.col-lg-10-90 {
+  flex: 0 0 90% !important;
+  max-width: 90% !important;
+}
+
+// a 태그 이동 시, 상단 nav 높이만큼 margin 주는 css
+h2:target::before, h3:target::before {
+  content: "";
+  display: block;
+  height: 6rem; /* fixed header height*/
+  margin-top: -6rem; /* negative fixed header height */
+  visibility: hidden;
+  pointer-events: none;
 }
 
 // 공통 end ===========
