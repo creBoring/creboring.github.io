@@ -30,8 +30,9 @@ p {
 }
 
 h2 {
+  margin-top: -2.5rem !important;
   margin-bottom: 1.5rem !important;
-  padding-top: 2.5rem !important;
+  padding-top: 5rem !important;
   padding-bottom: 1rem;
   border-bottom:1px solid rgb(230, 230, 230);
 
@@ -40,9 +41,9 @@ h2 {
 }
 
 h3, h4 {
-  margin-top: 0 !important;
+  margin-top: -2.5rem !important;
   margin-bottom: 0 !important;
-  padding-top: 1.5rem;
+  padding-top: 4.5rem;
   padding-bottom: 0.75rem;
   font-weight: bold !important;
   font-size: 1.5rem !important;
@@ -380,7 +381,8 @@ h2:target::before, h3:target::before {
 }
 
 .padding-top-1 {
-  padding-top: 1rem !important;
+  margin-top: -2.5rem !important;
+  padding-top: 3.5rem !important;
 }
 
 // 공통 end ===========
