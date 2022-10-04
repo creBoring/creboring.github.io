@@ -11,12 +11,6 @@ permalink: /blog/how-to-codepipeline-deploy-pipeline/
 usemathjax: true
 ---
 
-<figure>
-    <img style="width:60%;" src="/assets/img/posts/2021-08-17/why_automation.jpeg" class="img-fluid">
-    <figcaption><small>"세상에서 가장 빠른 것은?"</small></figcaption>
-</figure>
-
-
 프로젝트를 진행하며 우리 프로젝트에 배포 자동화를 도입해야 하는지 고민하는 경우가 많습니다. 이런 고민은 수동 배포에 고통받은 개발자들이 고통에서 벗어나기 위한 여러 방법들을 찾으면서 시작됩니다.
 
 배포 자동화가 모든 배포 문제를 해결해줄 수는 없지만, **배포에서 오는 피로감과 그 고통을 어느정도 줄여줄 수는 있습니다**. 배포 파이프라인을 구축하고, 사용자가 실수하기 쉬운 따분하고 지루한 작업들을 컴퓨터에게 떠넘겨버립시다!
@@ -27,7 +21,7 @@ usemathjax: true
 ## 왜 배포를 자동화 해야할까?
 
 <figure>
-    <img style="width: 60%" src="/assets/img/posts/2021-08-17/intro.jpeg" class="img-fluid">
+    <img style="width: 60%" src="/assets/img/posts/2022-09-27/intro.jpeg" class="img-fluid">
     <figcaption><small>"저 친구 또 금요일에 배포를 했대"</small></figcaption>
 </figure>
 
@@ -51,7 +45,7 @@ usemathjax: true
 ## 파이프라인 이란?
 
 <figure>
-    <img src="/assets/img/posts/2021-08-17/pipeline.jpg" class="img-fluid">
+    <img src="/assets/img/posts/2022-09-27/pipeline.jpg" class="img-fluid">
     <figcaption><small>"A씨, 여기 빌드 부분이 실패했어."</small></figcaption>
 </figure>
 
@@ -68,12 +62,10 @@ usemathjax: true
 위와 같은 파이프라인의 정의를 이해하고 나면, 아래 설명드릴 파이프라인의 동작방식을 이해하기 쉬워집니다.
 
 
-
 ## 배포 파이프라인의 요소
 
-
 <figure>
-    <img src="/assets/img/posts/2021-08-17/conveyor.jpeg" class="img-fluid">
+    <img src="/assets/img/posts/2022-09-27/conveyor.jpeg" class="img-fluid">
     <figcaption><small>"컨베이어 벨트와 닮은 파이프라인의 동작방식"</small></figcaption>
 </figure>
 
@@ -125,7 +117,7 @@ Deploy 단계까지 도달하기 전에 소스코드는 이미 배포 가능한 
 ## AWS CodePipeline
 
 <figure>
-    <img style="width: 60%" src="/assets/img/posts/2021-08-17/multipurpose_knife.jpeg" class="img-fluid">
+    <img style="width: 60%" src="/assets/img/posts/2022-09-27/multipurpose_knife.jpeg" class="img-fluid">
     <figcaption><small>"AWS의 <del>단점</del> 장점."</small></figcaption>
 </figure>
 
@@ -144,7 +136,7 @@ CodePipeline은 이렇듯 Event를 이용하여 각 단계를 연결시켜주고
 ## 파이프라인 아키텍쳐 예시
 
 <figure>
-    <img src="/assets/img/posts/2021-08-17/cicd_1.png" class="img-fluid">
+    <img src="/assets/img/posts/2022-09-27/cicd_1.png" class="img-fluid">
     <figcaption><small>"AWS 서비스로만 구성한 매우 심플한 배포 파이프라인 예시"</small></figcaption>
 </figure>
 
@@ -171,7 +163,7 @@ CodePipeline은 이렇듯 Event를 이용하여 각 단계를 연결시켜주고
 아래 제가 작성한 다른 배포 예시들을 통해 다양한 예제를 경험해보실 것을 추천드립니다 :)
 
 ### 실습
-- <small>S3를 활용한 실습: [CodePipeline으로 S3 배포 자동화하기][link_4]{:target="_blank"}</small>
+- <small>S3를 활용한 실습: [CodePipeline으로 S3 배포 자동화하기][link_1]{:target="_blank"}</small>
 - <small>ECS를 활용한 실습: CodePipeline으로 ECS 배포 자동화하기 (준비중..)
 
 > AWS 콘솔은 주기적으로 많이 업데이트되고 변경됩니다. 단순히 화면을 따라하시기 보다는, 내용을 이해하시고 이에 부합한 버튼과 입력을 해주시면 되겠습니다.
@@ -180,9 +172,4 @@ CodePipeline은 이렇듯 Event를 이용하여 각 단계를 연결시켜주고
 
 - <small>사진 출처 / <a href="http://www.freepik.com">Designed by pch.vector / Freepik</a></small>
 
-[link_1]: https://namu.wiki/w/%EC%97%91%EC%8B%9C%ED%8A%B8
-[link_2]: https://creboring.github.io/blog/what-is-s3-static-web-hosting/
-[link_3]: https://creboring.github.io/blog/codepipeline-s3-cicd-pipeline/
-[link_4]: https://creboring.github.io/blog/codepipeline-s3-cicd-pipeline-2/
-[link_5]: https://creboring.github.io/blog/codepipeline-s3-cicd-pipeline-3/
-[link_6]: https://creboring.github.io/blog/codepipeline-s3-cicd-pipeline-4/
+[link_1]: https://creboring.github.io/blog/codepipeline-s3-deploy-automation/

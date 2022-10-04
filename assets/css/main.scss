@@ -31,7 +31,8 @@ p {
 }
 
 h2 {
-  margin-top: 2.5rem !important;
+  margin-top: -2.5rem !important;
+  padding-top: 5rem;
   margin-bottom: 1.5rem !important;
   padding-bottom: 1rem;
   border-bottom:1px solid rgb(230, 230, 230);
@@ -41,7 +42,8 @@ h2 {
 }
 
 h3, h4 {
-  margin-top: 2rem !important;
+  margin-top: -2.5rem !important;
+  padding-top: 5rem !important;
   margin-bottom: 0 !important;
   padding-bottom: 0.75rem;
   font-weight: bold !important;
@@ -85,6 +87,10 @@ code {
 article dl, article ol, article ul {
   margin-bottom: 0 !important;
   padding-bottom: 1.5rem;
+}
+
+article li > dl, article li > ol, article li > ul {
+  padding-bottom: 0;
 }
 
 .navbar-dark .navbar-nav a.nav-link:hover {
@@ -385,15 +391,15 @@ figure {
   flex: 0 0 90% !important;
   max-width: 90% !important;
 }
-
-// a 태그 이동 시, 상단 nav 높이만큼 margin 주는 css
-h2:target::before, h3:target::before {
-  content: "";
-  display: block;
-  height: 6rem; /* fixed header height*/
-  margin-top: -6rem; /* negative fixed header height */
-  visibility: hidden;
-  pointer-events: none;
-}
+//
+// // a 태그 이동 시, 상단 nav 높이만큼 margin 주는 css
+// h2:target::before, h3:target::before {
+//   content: "";
+//   display: block;
+//   height: 10rem; /* fixed header height*/
+//   margin-top: -10rem; /* negative fixed header height */
+//   visibility: hidden;
+//   pointer-events: none;
+// }
 
 // 공통 end ===========
