@@ -3,9 +3,10 @@ layout: post
 title: "S3에 배포 자동화하기 ft.CodePipeline"
 summary: "S3를 웹서버로 사용중이다면? CodePipeline으로 배포 자동화하기"
 author: creboring
-date: '2022-10-03 10:37:18 +0530'
+date: '2022-02-21 10:37:18 +0530'
 category: AWS
 thumbnail: /assets/img/posts/2022-10-03/AmazonS3-icon.png
+title-img: /assets/img/posts/category/CodePipeline.png
 keywords: how to use code series, frontend aws cicd, frontend code series
 permalink: /blog/codepipeline-s3-deploy-automation/
 usemathjax: true
