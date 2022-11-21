@@ -8,17 +8,12 @@ baseurl: "" # the subpath of your site, e.g. /blog
 
 # Navigation
 urls:
-    - text: Home
-      url: /
-    - text: About
-      url: /about
-    - text: 블로그
+    - text: 기술블로그
       url: /blog
-
 
 # Edit Author details (For multi authors check _data/authors.yml)
 
-author_logo: profile.png
+author_logo: profile.jpeg
 author: Dohun Lee
 author_kr: 이도훈
 author_description: 백엔드 개발자

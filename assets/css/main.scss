@@ -101,6 +101,11 @@ article li > dl, article li > ol, article li > ul {
   font-weight: bold;
 }
 
+.navbar-collapse > ul {
+  margin-left: 0px !important;
+  font-size:1rem;
+}
+
 .col-lg-left-border {
   border-left: 1px solid var(--default-border-color);
 }
@@ -245,25 +250,127 @@ figure {
 
 
 /* Post Page */
+.side-container {
+  position:sticky;
+  top:80px;
+  width:100%;
+  margin-top:15px;
+}
+
+.side-profile {
+  width:100%;
+  margin-bottom:10px;
+
+  text-align: center;
+}
+
+.side-profile .profile-img {
+  width: 70px;
+  height:70px;
+  margin-top:10px;
+
+  border-radius: 50%;
+}
+
+.side-profile a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.side-container > div:before {
+  content: "";
+  display: block;
+  width: 96%;
+  height: 1px;
+  margin: 0 2% 1rem 2%;
+  background-color: var(--default-border-color);
+}
+
+.side-visitors {
+  // margin: 0 15px;
+}
+//
+.side-visitors .visitor-section {
+  width:100%;
+  padding: 0 15px;
+
+  display:flex;
+  justify-content:space-around;
+}
+
+.visitor-section span.profile-links a {
+    text-decoration-line:none;
+}
+
+.visitor-section span.profile-links .github {
+  color:black !important;
+}
+
+.visitor-section span.profile-links .linkedin {
+  color: #0e76a8 !important;
+}
+
+.visitor-section span.profile-links .instagram {
+  color: black !important;
+}
+
+//
+// .visitor-section li {
+//   list-style: none;
+//   float: right;
+//   padding-left:15px;
+//   padding-bottom: 10px;
+//   text-align: right;
+// }
+//
+// .visitor-section li.visitor-emphasis {
+//   position: absolute;
+//   top:9px;
+//   left:0;
+//   text-align: left;
+// }
+//
+// .visitor-section li * {
+//   display:block;
+// }
+//
+// .visitor-lable {
+//   font-size: 11px;
+//   line-height: 15px;
+// }
+//
+// li.visitor-emphasis .visitor-lable {
+//   font-size: 12px;
+// }
+//
+// .visitor-count {
+//   font-size: 20px;
+// }
+//
+// li.visitor-emphasis .visitor-count {
+//   font-size: 22px;
+//   font-weight: 600;
+//   line-height: 28px;
+// }
 
 /* TOC 관련 css */
 .toc {
-  position: absolute;
-  top: 168px;
-  width: 265px;
+  position: relative;
+  // top: 168px;
+  width: 100%;
   color: var(--default-toc-color) !important;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  margin-right: 0px;
+  margin: 0.75rem 0;
   font-size: 1rem;
 
   display: none;
   @media (min-width: 992px){
     display: block;
+  }
+
+  .toc-container {
+    margin: 0 0.75rem;
   }
 
   a.toc-active {
@@ -277,6 +384,7 @@ figure {
     list-style-type: none !important;
     margin-bottom: 0.1rem;
     padding-left: 0rem;
+    margin-left: 1.5rem !important;
     li {
       padding-left: .5rem;
     }
@@ -290,16 +398,6 @@ figure {
   a:hover {
     color:var(--default-toc-theme-color) !important;
   }
-}
-
-.toc:before {
-  content: "";
-  display: block;
-  width: 96%;
-  height: 1px;
-  margin: 0 2% 1rem 2%;
-  // margin-bottom: 1rem;
-  background-color: var(--default-border-color);
 }
 
 
@@ -391,15 +489,5 @@ figure {
   flex: 0 0 90% !important;
   max-width: 90% !important;
 }
-//
-// // a 태그 이동 시, 상단 nav 높이만큼 margin 주는 css
-// h2:target::before, h3:target::before {
-//   content: "";
-//   display: block;
-//   height: 10rem; /* fixed header height*/
-//   margin-top: -10rem; /* negative fixed header height */
-//   visibility: hidden;
-//   pointer-events: none;
-// }
 
 // 공통 end ===========
