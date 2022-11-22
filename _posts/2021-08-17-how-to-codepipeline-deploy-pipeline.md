@@ -6,6 +6,7 @@ author: creboring
 date: '2022-09-27 9:52:20 +0530'
 category: AWS
 thumbnail: /assets/img/posts/category/CodePipeline.png
+title-img: /assets/img/posts/category/CodePipeline.png
 keywords: how to use code series, aws cicd, codepipeline
 permalink: /blog/how-to-codepipeline-deploy-pipeline/
 usemathjax: true
@@ -21,7 +22,7 @@ usemathjax: true
 ## 왜 배포를 자동화 해야할까?
 
 <figure>
-    <img style="width: 60%" src="/assets/img/posts/2022-09-27/intro.jpeg" class="img-fluid">
+    <img src="/assets/img/posts/2022-09-27/intro.jpeg" class="img-fluid">
     <figcaption><small>"저 친구 또 금요일에 배포를 했대"</small></figcaption>
 </figure>
 
@@ -117,7 +118,7 @@ Deploy 단계까지 도달하기 전에 소스코드는 이미 배포 가능한 
 ## AWS CodePipeline
 
 <figure>
-    <img style="width: 60%" src="/assets/img/posts/2022-09-27/multipurpose_knife.jpeg" class="img-fluid">
+    <img src="/assets/img/posts/2022-09-27/multipurpose_knife.jpeg" class="img-fluid">
     <figcaption><small>"AWS의 <del>단점</del> 장점."</small></figcaption>
 </figure>
 
@@ -170,6 +171,7 @@ CodePipeline은 이렇듯 Event를 이용하여 각 단계를 연결시켜주고
 
 ## 출처
 
-- <small>사진 출처 / <a href="http://www.freepik.com">Designed by pch.vector / Freepik</a></small>
+- <small>사진 출처 / <a href="https://kr.freepik.com/free-vector/handymen-working-in-team-and-fixing-leakage-in-boiler-room-flat-vector-illustration-cartoon-plumbers-repairing-pipes-with-tools-flight-crew-and-aircraft-concept_11671671.htm#query=pipe&position=3&from_view=author" target="_blank">handymen-working-in-team-and-fixing-leakage-in-boiler-room - pch.vector</a></small>
+- <small>사진 출처 / <a href="https://kr.freepik.com/free-vector/worker-watching-conveyor-with-boxes-isolated-flat-vector-illustration-cartoon-man-standing-in-warehouse-with-automation-process_10174056.htm#query=belt&position=44&from_view=author" target="_blank">worker-watching-conveyor-with-boxes - pch.vector</a></small>
 
 [link_1]: https://creboring.github.io/blog/codepipeline-s3-deploy-automation/

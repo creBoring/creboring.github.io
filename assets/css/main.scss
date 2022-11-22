@@ -292,25 +292,34 @@ figure {
 //
 .side-visitors .visitor-section {
   width:100%;
-  padding: 0 15px;
+  padding: 0 10px;
 
   display:flex;
-  justify-content:space-around;
 }
 
-.visitor-section span.profile-links a {
-    text-decoration-line:none;
+.visitor-section div {
+  width: 50%;
 }
 
-.visitor-section span.profile-links .github {
+.visitor-section div.profile-links {
+  text-align: center;
+  border-left: 1px solid var(--default-border-color);
+  margin-top:1px;
+}
+
+.visitor-section div.profile-links a {
+  text-decoration-line:none;
   color:black !important;
 }
 
-.visitor-section span.profile-links .linkedin {
-  color: #0e76a8 !important;
+.visitor-section div.profile-links .github {
 }
 
-.visitor-section span.profile-links .instagram {
+.visitor-section div.profile-links .linkedin {
+  color: black !important;
+}
+
+.visitor-section div.profile-links .instagram {
   color: black !important;
 }
 
