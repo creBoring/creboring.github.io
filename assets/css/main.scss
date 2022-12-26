@@ -235,7 +235,8 @@ figure {
   width:100%;
 
   text-align: center;
-  background-color: rgba(0,0,0,0.75);
+  background-repeat : no-repeat;
+  background-size : cover;
 }
 
 .post-thumbnail > .card-img-top {
