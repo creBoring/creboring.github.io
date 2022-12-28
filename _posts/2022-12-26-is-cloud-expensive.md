@@ -214,7 +214,7 @@ Azure는 **Reservations** 라는 이름으로 제공하고 있습니다.
 아래 예시로, AWS 의 Amazon S3 라는 데이터 저장 비용을 살펴보겠습니다.
 
 <figure>
-  <img src="/assets/img/posts/2022-12-26/aws-s3-pricing.png" width="580">
+  <img src="/assets/img/posts/2022-12-26/aws-s3-pricing.png">
   <figcaption></figcaption>
 </figure>
 

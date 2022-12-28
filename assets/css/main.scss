@@ -19,6 +19,10 @@
   font-size: 35px !important;
 }
 
+.about-button {
+  margin-right:10px;
+}
+
 blockquote > p {
   font-size: 16px !important;
   padding-bottom: 0 !important;
@@ -220,6 +224,10 @@ article li > dl, article li > ol, article li > ul {
 /* Blog Page */
 figure {
   text-align: center;
+}
+
+figure > img {
+  width: 100%;
 }
 
 .blog-post {
