@@ -12,22 +12,44 @@ permalink: /blog/how-to-codepipeline-deploy-pipeline/
 usemathjax: true
 ---
 
-프로젝트를 진행하며 우리 프로젝트에 배포 자동화를 도입해야 하는지 고민하는 경우가 많습니다. 이런 고민은 수동 배포에 고통받은 개발자들이 고통에서 벗어나기 위한 여러 방법들을 찾으면서 시작됩니다.
+<figure>
+    <img src="https://media.giphy.com/media/XIahGhbK5A685fyr8D/giphy.gif" class="img-fluid">
+    <figcaption><small>어? 아니. 이게 왜? 아..!</small></figcaption>
+</figure>
 
-배포 자동화가 모든 배포 문제를 해결해줄 수는 없지만, **배포에서 오는 피로감과 그 고통을 어느정도 줄여줄 수는 있습니다**. 배포 파이프라인을 구축하고, 사용자가 실수하기 쉬운 따분하고 지루한 작업들을 컴퓨터에게 떠넘겨버립시다!
+프로젝트를 진행하며 우리 프로젝트에 배포 자동화를 도입해야 하는지 고민하는 경우가 많습니다. 배포할 때마다 혹여 실수로 서비스에 문제가 발생할까봐 걱정하고, 서버가 여러 대라면 배포 작업만으로도 피로를 느끼는 개발자들..
+
+배포 자동화가 모든 문제를 해결해줄 수는 없지만, **배포에서 오는 피로감을 줄여주고, 배포 실수에 대한 책임을 개인에게서 떨쳐낼 수 있습니다**. 배포 파이프라인을 구축하여 사용자가 실수하기 쉬운 따분하고 지루한 작업들을 자동화 해버립시다.
 
 본 게시글은 AWS 환경에서 많이 사용되는 CodePipeline으로 배포 자동화를 구성하는 방법에 대해 설명합니다. 이 게시글을 읽고 배포 파이프라인을 구축하게 된다면, 분명 귀찮은 배포 과정으로부터 해방될 수 있을 것입니다
 
 
 ## 왜 배포를 자동화 해야할까?
+모든 고민은 왜?(why)에서부터 시작됩니다. 과연 저희가 배포 자동화를 해야만 하는 이유는 무엇일까요? 배포의 자동화는 방법도 다양하며, 이에 따른 이점도 다양합니다. 그 중 대표적인 이점들을 아래 살펴보겠습니다.
+
+### 빠른 서비스 릴리스
 
 <figure>
-    <img src="/assets/img/posts/2022-09-27/intro.jpeg" class="img-fluid">
-    <figcaption><small>"저 친구 또 금요일에 배포를 했대"</small></figcaption>
+    <img src="https://media.giphy.com/media/A0fBO6nktSpxk9rO4L/giphy.gif" class="img-fluid" width="200">
+    <figcaption><small></small></figcaption>
 </figure>
 
+IT 기업, 특히 스타트업에서는 잦은 변경사항, 버그 수정으로 인해 수시로 배포가 이루어집니다. 이 때마다 개발자들은 본인이 작성한 소스코드를 서버들에 직접 들어가 배포하고, 서버를 재구동하며, 그 과정에서 서비스에 문제가 없는지를 점검합니다.
 
-모든 고민은 왜?(why)에서부터 시작됩니다. 과연 저희가 배포 자동화를 해야만 하는 이유는 무엇일까요?
+만약 서버가 여러 대 존재할 경우, 서비스의 중단을 방지하기 위해 다양한 배포 기법을 사용할 수도 있습니다(블루/그린, 롤링, 카나리, ...). 이 작업들을 모두 수동으로 수행한다면 배포 작업만으로도 상당 시간이 소요되며, 이는 서비스 운영에 버틀랙이 되어 버립니다.
+
+보통 이런 배포의 과정은 정형화 되어 있으며, 배포할 때마다 다른 시나리오로 배포하는 경우는 거의 없습니다. 이 경우 일련의 과정을 스크립트화 하여 자동화하면, 개발자는 자신의 소스코드가 배포되는 과정을 그저 모니터링만 하면 되게 됩니다.
+
+소스코드 작성부터 배포까지의 속도가 향상되니 **프로젝트 전반에 걸쳐 생산력이 증가하고, 개발자의 개발 부담도 덜게 되는 효과**를 기대할 수 있습니다.
+
+### 배포 실수 줄이기
+
+<figure>
+    <img src="/assets/img/posts/2022-09-27/no-deploy-friday.jpeg" class="img-fluid" width="400">
+    <figcaption><small></small></figcaption>
+</figure>
+
+배포는 매우 귀찮고 반복적인 작업이기 때문에 사용자 실수(human fault)를 일으키기 쉬우며, 배포 작업만으로도 개발자에게 상당한 피로감을 느끼게 해줍니다. 배포에 피로감을 느끼게 된다면, 다음 작업을 위한 추진력도 함께 꺾이게 됩니다.
 
 >  A 대리: "B 씨, 금요일인데 퇴근안해?"<br>
 >  B 신입: "개발하던게 거의 다 완료되어서요, 이것만 배포하고 갈게요!"<br>
@@ -36,11 +58,7 @@ usemathjax: true
 위 증상은 IT 개발현장에서 쉽게 발견되는 증상으로, **금요일배포증후군**이라고 불리는 매우 위중한 증상입니다 (No Deploy Fridays).
 위와 같은 밈(meme)들이 많이 퍼져있는 것은, 그만큼 배포로 인한 다양한 문제를 겪어본 개발자들이 많다는 것을 의미합니다.
 
-배포는 매우 귀찮고 반복적인 작업이기 때문에 사용자 실수(human fault)를 일으키기 쉬우며, 배포 작업만으로도 개발자에게 상당한 피로감을 느끼게 해줍니다. 배포에 피로감을 느끼게 된다면, 다음 작업을 위한 추진력도 함께 꺾이게 됩니다.
-
-배포 자동화를 구성한다면 이런 배포 문제가 생겼을 때 문제의 원인이 소스코드 자체에 있다면 어쩔 수 없지만, 적어도 배포 환경 설정이나 사용자의 실수에 의해 실패하는 경우는 방지할 수 있습니다.
-
-또한, 소스코드 작성부터 배포까지의 속도가 향상되니 **프로젝트 전반에 걸쳐 생산력이 증가하고, 개발자의 개발 부담도 덜게 되는 효과**도 기대할 수 있습니다.
+배포 자동화를 구성한다면, 이런 배포 문제들에 대한 방지가 가능해집니다. 문제의 원인이 소스코드에 있다면 **배포되기 전 테스트를 통해 잘못된 소스가 운영에 배포되는 것을 방지**하며, 배포 환경 설정이나 사용자의 실수에 의해 실패하는 경우는 **배포 과정을 스크립트화하여 실수를 사전에 방지**할 수 있습니다.
 
 
 ## 파이프라인 이란?
@@ -171,7 +189,8 @@ CodePipeline은 이렇듯 Event를 이용하여 각 단계를 연결시켜주고
 
 ## 출처
 
-- <small>사진 출처 / <a href="https://kr.freepik.com/free-vector/handymen-working-in-team-and-fixing-leakage-in-boiler-room-flat-vector-illustration-cartoon-plumbers-repairing-pipes-with-tools-flight-crew-and-aircraft-concept_11671671.htm#query=pipe&position=3&from_view=author" target="_blank">handymen-working-in-team-and-fixing-leakage-in-boiler-room - pch.vector</a></small>
-- <small>사진 출처 / <a href="https://kr.freepik.com/free-vector/worker-watching-conveyor-with-boxes-isolated-flat-vector-illustration-cartoon-man-standing-in-warehouse-with-automation-process_10174056.htm#query=belt&position=44&from_view=author" target="_blank">worker-watching-conveyor-with-boxes - pch.vector</a></small>
+- <small>사진 출처(GIPHY) / <a href="https://media.giphy.com/media/XIahGhbK5A685fyr8D/giphy.gif" target="_blank">Computer Technology GIF - Sony Pictures Animation</a></small>
+- <small>사진 출처(Freepik) / <a href="https://kr.freepik.com/free-vector/handymen-working-in-team-and-fixing-leakage-in-boiler-room-flat-vector-illustration-cartoon-plumbers-repairing-pipes-with-tools-flight-crew-and-aircraft-concept_11671671.htm#query=pipe&position=3&from_view=author" target="_blank">handymen-working-in-team-and-fixing... - pch.vector</a></small>
+- <small>사진 출처(Freepik) / <a href="https://kr.freepik.com/free-vector/worker-watching-conveyor-with-boxes-isolated-flat-vector-illustration-cartoon-man-standing-in-warehouse-with-automation-process_10174056.htm#query=belt&position=44&from_view=author" target="_blank">worker-watching-conveyor-with-boxes - pch.vector</a></small>
 
 [link_1]: https://creboring.github.io/blog/codepipeline-s3-deploy-automation/
