@@ -10,14 +10,6 @@ layout: default
 </div>
 
 <div class="row justify-content-center" id="blog-post-container">
-  <div class="col-lg-9 col-lg-left-border row justify-content-center"">
-    <div class="col-lg-1 col-lg-10-05"></div>
-    <div class="col-lg-10 col-lg-10-90">
-      {%- include blog_post_article.html -%}
-      {%- include blog_post_comments.html-%}
-    </div>
-    <div class="col-lg-1 col-lg-10-05"></div>
-  </div>
   <div class="col-lg-3 col-lg-left-border col-lg-right-border">
     <div id="side-container" class="side-container">
       <div class="side-profile">
@@ -53,6 +45,14 @@ layout: default
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-lg-9 col-lg-right-border row justify-content-center"">
+    <div class="col-lg-1 col-lg-10-05"></div>
+    <div class="col-lg-10 col-lg-10-90">
+      {%- include blog_post_article.html -%}
+      {%- include blog_post_comments.html-%}
+    </div>
+    <div class="col-lg-1 col-lg-10-05"></div>
   </div>
 </div>
 
