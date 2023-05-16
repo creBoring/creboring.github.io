@@ -8,12 +8,15 @@
 /* custom css goes below */
 
 /* 변수 처리 */
-:root {
+body {
   --default-toc-color: #777777;
   --default-toc-theme-color: var(--link-color);
   --default-toc-border-color: #777777;
   --default-border-color: rgb(230, 230, 230);
 }
+
+/* 변수 처리 scss */
+$media-size-mobile: 992px;
 
 .jumbotron-heading {
   font-size: 35px !important;
@@ -383,7 +386,7 @@ figure > img {
   font-size: 1rem;
 
   display: none;
-  @media (min-width: 992px){
+  @media (min-width: $media-size-mobile){
     display: block;
   }
 
@@ -499,13 +502,23 @@ figure > img {
 }
 
 .col-lg-10-05 {
-  flex: 0 0 5% !important;
-  max-width: 5% !important;
+  flex: 0 0 0% !important;
+  max-width: 0% !important;
+
+  @media (min-width: $media-size-mobile){
+    flex: 0 0 5% !important;
+    max-width: 5% !important;
+  }
 }
 
 .col-lg-10-90 {
-  flex: 0 0 90% !important;
-  max-width: 90% !important;
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  
+  @media (min-width: $media-size-mobile){
+    flex: 0 0 90% !important;
+    max-width: 90% !important;
+  }
 }
 
 // 공통 end ===========
