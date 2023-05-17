@@ -238,4 +238,4 @@ URL 호출 시, 아래와 같이 확인되시면 성공입니다.
 감사합니다.
 
 [link_1]: https://github.com/creBoring/S3-CICD-Sample.git
-[link_2]: https://creboring.github.io/blog/how-to-codepipeline-deploy-pipeline/
+[link_2]: https://creboring.net/blog/how-to-codepipeline-deploy-pipeline/

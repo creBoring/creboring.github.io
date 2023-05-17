@@ -3,7 +3,7 @@ subtitle: 근데 이제 IT를 곁들인
 description: >- # this means to ignore newlines until "baseurl:"
   devlopr-jekyll is a beautiful Jekyll Theme Built For Developers, which is optimized for speed and readability.
 
-url: "https://creboring.github.io" # the base hostname & protocol for your site, e.g. https://example.github.io
+url: "https://creboring.net" # the base hostname & protocol for your site, e.g. https://example.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
 
 # Navigation
@@ -19,7 +19,7 @@ author_kr: 이도훈
 author_description: 클라우드 개발자
 author_bio: 안녕하세요, <b>이도훈</b>입니다. <b>AWS파트너사</b>에서 <b>클라우드 엔지니어</b>로 4년간 AWS 인프라 구성/구축 기술 지원 업무를 수행했으며, 이후 <b>개발팀</b>으로 이동하여 Java, Spring, AWS, MySQL, Athena 기반으로 CMP(Cloud Management Platform) <b>빌링 플랫폼</b>을 개발하고 있습니다.<br><br>다수 프로젝트에서 <b>AWS</b>로의 마이그레이션, 신규 인프라 구축 경험이 있으며, AWS 파트너로써 고객 대상으로 AWS Immersionday 세미나 발표를 맡았습니다.
 author_email: "cre.boring@gmail.com"
-author_website_url: "creboring.github.io"
+author_website_url: "creboring.net"
 author_location: South Korea
 typewrite-text: 평범한 개발자가 운영하는 기술 블로그
 

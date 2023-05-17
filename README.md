@@ -1,2 +1,2 @@
-# creBoring.github.io
+# creBoring.net
 Personal Technology Blog by Dohun Lee

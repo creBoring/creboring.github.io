@@ -193,4 +193,4 @@ CodePipeline은 이렇듯 Event를 이용하여 각 단계를 연결시켜주고
 - <small>사진 출처(Freepik) / <a href="https://kr.freepik.com/free-vector/handymen-working-in-team-and-fixing-leakage-in-boiler-room-flat-vector-illustration-cartoon-plumbers-repairing-pipes-with-tools-flight-crew-and-aircraft-concept_11671671.htm#query=pipe&position=3&from_view=author" target="_blank">handymen-working-in-team-and-fixing... - pch.vector</a></small>
 - <small>사진 출처(Freepik) / <a href="https://kr.freepik.com/free-vector/worker-watching-conveyor-with-boxes-isolated-flat-vector-illustration-cartoon-man-standing-in-warehouse-with-automation-process_10174056.htm#query=belt&position=44&from_view=author" target="_blank">worker-watching-conveyor-with-boxes - pch.vector</a></small>
 
-[link_1]: https://creboring.github.io/blog/codepipeline-s3-deploy-automation/
+[link_1]: https://creboring.net/blog/codepipeline-s3-deploy-automation/
