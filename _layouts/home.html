@@ -16,18 +16,11 @@ layout: full-width
          {%- include github_star_button.html -%}
          {%- include github_fork_button.html -%}
     </div>
-    <div class="col-lg-8 offset-md-2">
+    <div class="col-lg-8 col-align-center">
       <section id="recent-articles">
-        <div id="recent-articles-header">
-          <div id="recent-articles-title">
-            <h2 class="card-title">최근 게시물</h2>
-          </div>
-          <div id="recent-articles-show-all" class="flex-align-center">
-            <a class="btn btn-lg btn-dark" href="/blog"> 전체 보기 </a>
-          </div>
+        <div id="recent-articles-title">
+          <h2 class="card-title">최근 게시물</h2>
         </div>
-        <br />
-
         <ul>
           {% for post in site.posts limit:5 %}
           <li class="article-card">
@@ -50,17 +43,20 @@ layout: full-width
                 <div id="article-link">
                     <span class="recent-article-link"><b>{{post.title}}</b> <span style="color: #ccc; font-size: 15px;"> - <i><time datetime="{{ post.date }}" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</time></i></span></span>
                     <br>
-                    <span style="color: #777; font-size: 16px;">{{ post.summary }}</span>
-                    </div>
-                  <div id="article-alert">
-                  {% for cat in post.category limit:1 %}
-                   <button class="btn btn-sm btn-dark">{{cat}}</button>
-                  {% endfor %}
-                  </div>
+                    <span class="article-desc" style="color: #777; font-size: 16px;">{{ post.summary }}</span>
+                </div>
+                <div id="article-alert" class="article-tags">
+                {% for cat in post.category limit:1 %}
+                  <button class="btn btn-sm btn-dark">{{cat}}</button>
+                {% endfor %}
+                </div>
               </div>
             </a>
           </li>
           {% endfor %}
         </ul>
+        <div id="recent-article-footer" class="flex-align-right">
+          <a class="btn btn-sm btn-dark" href="/blog"> 전체 보기 ></a>
+        </div>
       </section>
     </div>

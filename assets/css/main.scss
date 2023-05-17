@@ -17,6 +17,7 @@ body {
 
 /* 변수 처리 scss */
 $media-size-mobile: 992px;
+$media-size-tiny: 768px;
 
 .jumbotron-heading {
   font-size: 35px !important;
@@ -173,8 +174,17 @@ article li > dl, article li > ol, article li > ul {
 
 /* Main Page */
 #recent-articles {
+  max-width: 90% !important;
   margin-top: 75px !important;
   margin-bottom: 75px !important;
+
+  @media (min-width: $media-size-mobile) {
+    max-width: 80% !important;
+  }
+
+  ol, ul {
+    margin-left: 5px !important;
+  }
 }
 
 .btn-lg {
@@ -183,6 +193,22 @@ article li > dl, article li > ol, article li > ul {
 
 #article-container > #article-img > img {
   object-fit: cover;
+}
+
+.article-tags {
+  display: none;
+
+  @media (min-width: $media-size-mobile) {
+    display: block;
+  }
+}
+
+.article-desc {
+  display: none;
+
+  @media (min-width: $media-size-tiny) {
+    display: block;
+  }
 }
 
 
@@ -340,45 +366,6 @@ figure > img {
   color: black !important;
 }
 
-//
-// .visitor-section li {
-//   list-style: none;
-//   float: right;
-//   padding-left:15px;
-//   padding-bottom: 10px;
-//   text-align: right;
-// }
-//
-// .visitor-section li.visitor-emphasis {
-//   position: absolute;
-//   top:9px;
-//   left:0;
-//   text-align: left;
-// }
-//
-// .visitor-section li * {
-//   display:block;
-// }
-//
-// .visitor-lable {
-//   font-size: 11px;
-//   line-height: 15px;
-// }
-//
-// li.visitor-emphasis .visitor-lable {
-//   font-size: 12px;
-// }
-//
-// .visitor-count {
-//   font-size: 20px;
-// }
-//
-// li.visitor-emphasis .visitor-count {
-//   font-size: 22px;
-//   font-weight: 600;
-//   line-height: 28px;
-// }
-
 /* TOC 관련 css */
 .toc {
   position: relative;
@@ -496,9 +483,18 @@ figure > img {
 
 // 공통 ===============
 
+.col-align-center {
+  margin: auto;
+}
+
 .flex-align-center {
   display: flex;
   align-items: center;
+}
+
+.flex-align-right {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .padding-top-1 {
