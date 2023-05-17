@@ -97,10 +97,6 @@ hyvor_talk_website_id: 5044
 # mailchimp embedded form url (newsletter):
 mailchimp_form_url: https://sujaykundu.us10.list-manage.com/subscribe/post?u=50bab1c85eae24ecfb0f68361&amp;id=3a2dd721d0
 
-# releases - widget can be (sidebar, modal or embed)
-olvy_organization: devlopr
-olvy_widget_type: sidebar
-
 # syntax highlighter
 markdown: kramdown
 highlighter: rouge
