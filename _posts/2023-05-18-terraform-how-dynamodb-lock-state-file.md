@@ -12,12 +12,16 @@ permalink: /blog/terraform-how-dynamodb-lock-state-file/
 usemathjax: true
 ---
 
+<br>
+여러 작업 환경에서 Terraform 코드를 작성하다보니 `tfstate` 파일이 잘 관리되지 않아 파일을 원격지에서 관리하게 되었습니다. AWS 인프라를 Terraform으로 작성하던지라 `S3`와 `DynamoDB`를 이용해 backend와 lock을 구현하게 되었는데, s3는 이해가 되었지만 dynamodb로 어떻게 lock을 구현한다는건지 의문이 들어 동작 원리를 분석하게 되었습니다. 
+
 ## 결론
-Terraform은 state 파일에 접근하기 전 DynamoDB에 lock 데이터를 **조건부 요청으로 Put**을 합니다. 이후 모든 작업이 완료되면 해당 lock 데이터를 다시 삭제합니다. 
-이 때, 조건부 요청으로 기존에 **이미 키가 존재할 경우 에러를 반환**하도록 조건을 두어, 누군가 작업중인 state 파일에 lock을 시도하려고 DynamoDB에 Put을 요청하면 에러가 반환됩니다.
+Terraform은 state 파일에 접근하기 전 DynamoDB에 lock 데이터를 입력하는데, 이 때 **이미 키가 존재할 경우 에러를 반환하도록 조건부 요청으로 Put**을 합니다. 
+그러면, 이미 누군가에 의해 DynamoDB에 lock 데이터가 입력된 상태에서, 다른 누군가가 state 파일에 lock을 시도하려고 DynamoDB에 Put을 요청하면 에러가 반환됩니다. (lock 데이터는 모든 작업이 완료된 이후에 삭제합니다.)
 > 에러: (ConditionalCheckFailedException: The conditional request failed Lock Info ID: 00000000-0000-0000-0000-000000000000)
 
 이로 하여금 작업 도중 다른 사용자가 lock을 잡을 수 없게 만들어 기존 작업의 lock을 유지합니다.
+
 
 
 ## 원리
