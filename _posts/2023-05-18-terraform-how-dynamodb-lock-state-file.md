@@ -13,8 +13,8 @@ usemathjax: true
 ---
 
 ## 결론
-Terraform은 state 파일에 접근하기 전 DynamoDB에 lock 데이터를 조건부 요청으로 Put을 합니다. 이후 모든 작업이 완료되면 해당 lock 데이터를 다시 삭제합니다. 
-이 때, 조건부 요청으로 기존에 이미 키가 존재할 경우 에러를 반환하도록 조건을 두어, 누군가 작업중인 state 파일에 lock을 시도하려고 DynamoDB에 Put을 요청하면 에러가 반환됩니다.
+Terraform은 state 파일에 접근하기 전 DynamoDB에 lock 데이터를 **조건부 요청으로 Put**을 합니다. 이후 모든 작업이 완료되면 해당 lock 데이터를 다시 삭제합니다. 
+이 때, 조건부 요청으로 기존에 **이미 키가 존재할 경우 에러를 반환**하도록 조건을 두어, 누군가 작업중인 state 파일에 lock을 시도하려고 DynamoDB에 Put을 요청하면 에러가 반환됩니다.
 > 에러: (ConditionalCheckFailedException: The conditional request failed Lock Info ID: 00000000-0000-0000-0000-000000000000)
 
 이로 하여금 작업 도중 다른 사용자가 lock을 잡을 수 없게 만들어 기존 작업의 lock을 유지합니다.
@@ -26,13 +26,12 @@ DynamoDB에서 `PutItem`의 기본 동작은 **'덮어쓰기'** 입니다. 동�
 ### 조건부 요청이란?
 AWS는 DynamoDB에서의 CUD(Put, Update, Delete) 는 unconditional, 무조건적이라고 합니다. 해당 요청은 반드시 수행되며, 기존에 데이터가 있는 경우 덮어씁니다.
 
-이를 무조건 성공하게 하지 않고, 특정 경우에만 성공하도록 조건을 걸게하는 옵션이 '조건부 요청' 이라는 옵션입니다.
+이를 무조건 성공하게 하지 않고, 특정 경우에만 성공하도록 조건을 걸게하는 옵션이 '조건부 요청' 이라는 옵션입니다. 사용방법은 아래와 같이 CUD 요청에 옵션으로 `condition-expression` 을 주면 됩니다.
 
-사용방법은 아래와 같이 CUD 요청에 옵션으로 `condition-expression` 을 주면 됩니다.
-```JSON
-aws dynamodb put-item \
-    --table-name ProductCatalog \
-    --item file://item.json \
+```
+aws dynamodb put-item 
+    --table-name ProductCatalog 
+    --item file://item.json 
     --condition-expression "attribute_not_exists(Id)"
 ```
 
@@ -62,8 +61,6 @@ X-Amz-Target: DynamoDB_20120810.PutItem
 
 조건에 **"attribute가 존재하지 않을 때"** 라는 조건을 주었기 때문에, 누군가 작업하고 있을 경우 다른 사람이 lock을 시도하면 에러가 반환됩니다.
 
-## 마무리
-다른 backend 리소스는 어떤 방식으로 locking을 구성했는지 모르겠으나, Terraform이 자체적으로 lock을 구현한 것이 아닌 AWS 리소스의 기능을 이용해 lock을 구현한걸 보니 다른 backend 리소스는 어떻게 구성해두었는지 궁금해지네요
 
 ## 참고 자료
 - <small>내용 참고 / <a href="https://docs.aws.amazon.com/ko_kr/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.ConditionalUpdate" target="_blank">AWS Doc - [DynamoDB] Working with items and attributes</a></small>
