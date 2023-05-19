@@ -8,65 +8,27 @@ layout: default
       <a href="/">
         <img src="/assets/img/{{ site.author_logo }}" class="profile-img" />
       </a>
-      <h1 class="profile-name">{{ site.author_kr }}</h1>
-      <p class="profile-bio">{{ site.author_description }}</p>
-      {% if site.github_username %} {%- include github_follow_button.html -%} {%
-      endif %}
+      <h2 class="profile-name">
+        {{ site.author }}<br>
+        <small class="profile-bio">{{ site.author_description }}</small>
+      </h2>
 
-      <p class="profile-links">
-        {% if site.twitter_username %}
-        <a
-          class="social-link"
-          href="http://twitter.com/{{ site.twitter_username }}"
-        >
-          <i class="fab fa-twitter"></i>
-        </a>
-        {% endif %} {% if site.facebook_username %}
-        <a
-          class="social-link"
-          href="http://facebook.com/{{ site.facebook_username }}"
-        >
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        {% endif %} {% if site.instagram_username %}
-        <a
-          class="social-link"
-          href="http://instagram.com/{{ site.instagram_username }}"
-        >
-          <i class="fab fa-instagram"></i>
-        </a>
-        {% endif %} {% if site.medium_username %}
-        <a
-          class="social-link"
-          href="http://medium.com/@{{ site.medium_username }}"
-        >
-          <i class="fab fa-medium-m"></i>
-        </a>
-        {% endif %} {% if site.github_username %}
-        <a
-          class="social-link"
-          href="http://github.com/{{ site.github_username }}"
-        >
-          <i class="fab fa-github"></i>
-        </a>
-        {% endif %} {% if site.linkedin_username %}
-        <a
-          class="social-link"
-          href="http://linkedin.com/in/{{ site.linkedin_username }}"
-        >
-          <i class="fab fa-linkedin-in"></i>
+      <div class="profile-contact-box">
+        {% if site.author_location %}
+        <h6 class="profile-contact-item"><i class="fas fa-map-marker-alt"></i>&#9;{{ site.author_location }}</h6>
+        {% endif %} {% if site.author_email %}
+        <h6 class="profile-contact-item"><i class="fas fa-envelope"></i>&#9;{{ site.author_email }}</h6>
+        {% endif %} {% if site.author_website_url %}
+        <a href="/">
+          <h6 class="profile-contact-item"><i class="fas fa-link"></i>&#9;{{ site.author_website_url }}</h6>
         </a>
         {% endif %}
-      </p>
-
-
-      {% if site.author_location %}
-      <h6><i class="fas fa-map-marker-alt"></i> {{ site.author_location }}</h6>
-      {% endif %} {% if site.author_email %}
-      <h6><i class="fas fa-envelope"></i> {{ site.author_email }}</h6>
-      {% endif %} {% if site.author_website_url %}
-      <h6><i class="fas fa-link"></i> {{ site.author_website_url }}</h6>
-      {% endif %}
+        <a href="http://linkedin.com/in/{{ site.linkedin_username }}">
+          <h6 class="profile-contact-item">
+            <i class="fab fa-linkedin-in"></i>&#9;LinkedIn
+          </h6>
+        </a>
+      </div>
     </div>
 
     <div class="card card-border">

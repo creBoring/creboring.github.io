@@ -14,8 +14,9 @@ layout: default
     <div id="side-container" class="side-container">
       <div class="side-profile">
         <a href="/about" target="_blank">
-        <img src="/assets/img/{{ site.author_logo }}" class="profile-img" />
-        <div><b>Dohun Lee</b></div>
+          <img src="/assets/img/{{ site.logo }}" class="profile-img" />
+          <div><b>잡다한 기술공방</b><br><small style="color:gray">Dohun Lee</small></div>
+          
         </a>
       </div>
       <div class="side-visitors">
@@ -47,12 +48,10 @@ layout: default
     </div>
   </div>
   <div class="col-lg-9 col-lg-right-border row justify-content-center">
-    <div class="col-lg-1 col-lg-10-05"></div>
-    <div class="col-lg-10 col-lg-10-90">
+    <div class="col-lg-12">
       {%- include blog_post_article.html -%}
       {%- include blog_post_comments.html-%}
     </div>
-    <div class="col-lg-1 col-lg-10-05"></div>
   </div>
 </div>
 

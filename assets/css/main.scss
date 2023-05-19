@@ -156,13 +156,11 @@ article li > dl, article li > ol, article li > ul {
 .card {
   border: none !important;
   background: var(--main-background-color) !important;
-  //border-color: white;
 }
 
 .card-border {
   border: 1px solid rgba(0, 0, 0, 0.125) !important;
   border-radius: 0.25rem;
-  background-color: var(--card-background-color) !important;
 }
 
 .card-title-header {
@@ -219,6 +217,30 @@ article li > dl, article li > ol, article li > ul {
   border-radius: 10%;
   box-shadow:-2px 0px 5px -6px #000000,
              2px 0px 5px -6px #000000;
+}
+
+#profile-card a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.profile-contact-box {
+  width: 70%; 
+  margin: auto; 
+  text-align: left;
+}
+
+.profile-contact-item {
+  white-space: pre;
+}
+
+.profile-name {
+  padding-top: 0px !important;
+  margin-top: 20px !important;
+}
+
+.github-follow-button {
+  padding-bottom: 10px;
 }
 
 .about-info-row {
@@ -500,26 +522,6 @@ figure > img {
 .padding-top-1 {
   margin-top: -2.5rem !important;
   padding-top: 3.5rem !important;
-}
-
-.col-lg-10-05 {
-  flex: 0 0 0% !important;
-  max-width: 0% !important;
-
-  @media (min-width: $media-size-mobile){
-    flex: 0 0 5% !important;
-    max-width: 5% !important;
-  }
-}
-
-.col-lg-10-90 {
-  flex: 0 0 100% !important;
-  max-width: 100% !important;
-  
-  @media (min-width: $media-size-mobile){
-    flex: 0 0 90% !important;
-    max-width: 90% !important;
-  }
 }
 
 // 공통 end ===========

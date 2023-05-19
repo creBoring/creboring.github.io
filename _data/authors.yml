@@ -2,9 +2,9 @@
 creboring:
    name: Dohun Lee
    username: creboring
-   avatar: dohunlee.png
-   bio: "안녕하세요, 현재 <b>AWS 파트너사</b>에서 빌링 시스템 구축 및 웹 페이지 운영 및 개발을 담당하고 있습니다."
-   email: cre.boring@gmail.com
+   avatar: profile.jpeg
+   bio: "안녕하세요. AWS 파트너사에서 4년간 <b>클라우드 엔지니어</b>로 활동했으며, 현재는 <b>FinOps</b> 툴 개발 및 운영을 담당하고 있습니다."
+   email: crebr.ldh@gmail.com
    site: "https://creboring.net"
    social:
       - title: "github"
