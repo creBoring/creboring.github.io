@@ -5,7 +5,7 @@ summary: "DynamoDB가 S3 에 저장된 tfstate파일을 안전하게 lock 할 �
 author: creboring
 date: '2023-05-18 00:20:41 +0530'
 category: [테라폼, AWS]
-thumbnail: /assets/img/posts/2023-05-18/Terraform.png
+thumbnail: /assets/img/posts/category/terraform.jpg
 title-img: /assets/img/posts/category/blacksmith.jpg
 keywords: Terraform, 테라폼, DynamoDB, lock, backend
 permalink: /blog/terraform-how-dynamodb-lock-state-file/
