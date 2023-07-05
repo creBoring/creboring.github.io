@@ -13,7 +13,7 @@ usemathjax: true
 ---
 
 <br>
-여러 작업 환경에서 Terraform 코드를 작성하다보니 `tfstate` 파일이 잘 관리되지 않아 파일을 원격지에서 관리하게 되었습니다. AWS 인프라를 Terraform으로 작성하던지라 `S3`와 `DynamoDB`를 이용해 backend와 lock을 구현하게 되었는데, s3는 이해가 되었지만 dynamodb로 어떻게 lock을 구현한다는건지 의문이 들어 동작 원리를 분석하게 되었습니다. 
+여러 작업 환경에서 Terraform 코드를 작성하다보니 tfstate 파일이 잘 관리되지 않아 파일을 원격지에서 관리하게 되었습니다. AWS 인프라를 Terraform으로 작성하던지라 S3와 DynamoDB를 이용해 backend와 lock을 구현하게 되었는데, s3는 이해가 되었지만 dynamodb로 어떻게 lock을 구현한다는건지 의문이 들어 동작 원리를 분석하게 되었습니다. 
 
 ## 결론
 Terraform은 state 파일에 접근하기 전 DynamoDB에 lock 데이터를 입력하는데, 이 때 **이미 키가 존재할 경우 에러를 반환하도록 조건부 요청으로 Put**을 합니다. 
@@ -25,7 +25,7 @@ Terraform은 state 파일에 접근하기 전 DynamoDB에 lock 데이터를 입�
 
 
 ## 원리
-DynamoDB에서 `PutItem`의 기본 동작은 **'덮어쓰기'** 입니다. 동일 키의 항목이 테이블이 이미 존재하는 경우 DynamoDB는 새 데이터로 덮어쓰기를 하며 에러를 반환하지 않습니다. 이를 위해 Terraform에서는 DynamoDB에 lock 데이터를 put 할 때 단순히 PutItem을 하는 것이 아닌 `'조건부 요청'`으로 PutItem 을 수행해 기존 데이터가 있는 경우 **강제로 에러를 반환하도록 합니다**.
+DynamoDB에서 `PutItem`의 기본 동작은 **'덮어쓰기'** 입니다. 동일 키의 항목이 테이블이 이미 존재하는 경우 DynamoDB는 새 데이터로 덮어쓰기를 하며 에러를 반환하지 않습니다. 이를 위해 Terraform에서는 DynamoDB에 lock 데이터를 put 할 때 단순히 PutItem을 하는 것이 아닌 **'조건부 요청'**으로 PutItem 을 수행해 기존 데이터가 있는 경우 **강제로 에러를 반환하도록 합니다**.
 
 ### 조건부 요청이란?
 AWS는 DynamoDB에서의 CUD(Put, Update, Delete) 는 unconditional, 무조건적이라고 합니다. 해당 요청은 반드시 수행되며, 기존에 데이터가 있는 경우 덮어씁니다.
@@ -40,7 +40,7 @@ aws dynamodb put-item
 ```
 
 ### 실제로 Terraform에서 수행하는 PutItem 요청
-`TF_LOG` 수준을 `DEBUG`로 변경하고 terraform에서 `plan`을 수행하면 아래와 같은 로그를 찾아볼 수 있습니다.
+TF_LOG 수준을 DEBUG로 변경하고 terraform에서 `plan`을 수행하면 아래와 같은 로그를 찾아볼 수 있습니다.
 ```
 [DEBUG] [aws-sdk-go] DEBUG: Request dynamodb/PutItem Details:
 ---[ REQUEST POST-SIGN ]-----------------------------

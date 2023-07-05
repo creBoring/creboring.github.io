@@ -17,24 +17,24 @@ usemathjax: true
     <img src="/assets/img/posts/category/Docker-family.jpeg" class="img-fluid">
 </figure>
 
-최근 AWS 계정의 리소스를 이전하는 과정에서 이미지를 직접 pull & push 하게 되었는데, 개발계 이미지를 먼저 pull 한 상태로 운영계의 이미지를 가져오니 **대부분의 레이어는 already exists로 캐시를 사용하고, 가장 마지막 단계만 별도로 download 되었습니다**. 도커가 빌드 효율과 시간 단축을 위해 레이어를 만들어 저장하고 있다는 사실은 알고있었지만, **어떠한 기준으로 레이어를 나누게 되는 것인지** 의문이 들어 원리를 분석해보았습니다. 
+최근 AWS 계정의 리소스를 이전하는 과정에서 이미지를 직접 pull & push 하게 되었는데, 개발계 이미지를 먼저 pull 한 상태로 운영계의 이미지를 가져오니 대부분의 레이어는 already exists로 캐시를 사용하고, 가장 마지막 단계만 별도로 download 되었습니다. 도커가 빌드 효율과 시간 단축을 위해 레이어를 만들어 저장하고 있다는 사실은 알고있었지만, 어떠한 기준으로 레이어를 나누게 되는 것인지 의문이 들어 원리를 분석해보았습니다. 
 
 ## 결론
-도커는 `Dockerfile`을 읽어들여, **파일 시스템에 변화를 주는 커맨드마다 새로운 이미지 레이어를 만듭니다**. 즉, Dockerfile을 읽어들여 각 줄마다 이미지 레이어를 만든다는 말은 틀린 말은 아닙니다. 하지만, 모든 줄마다 레이어를 만드는 것이 아닌 파일 시스템에 변화가 발생하는 경우만 이미지 레이어를 생성합니다. 
+도커는 **Dockerfile을 읽어들여, 파일 시스템에 변화를 주는 커맨드마다 새로운 이미지 레이어를 만듭니다**. 즉, Dockerfile을 읽어들여 각 줄마다 이미지 레이어를 만든다는 말은 틀린 말은 아닙니다. 하지만, 모든 줄마다 레이어를 만드는 것이 아닌 파일 시스템에 변화가 발생하는 경우만 이미지 레이어를 생성합니다. 
 
-또한, 도커 빌드 엔진은 이미지 레이어의 공간 효율과 안정성을 위해 꾸준히 빌드 방식을 변경하고 개선해가고 있습니다. 따라서, **도커 엔진 버전, 빌드 라이브러리의 종류에 따라 결과물은 조금씩 차이가 있을 수 있습니다**. (Docker 엔진 **23 버전**부터는 `buildx` 를 기본 builder로 사용합니다)<br>
+또한, 도커 빌드 엔진은 이미지 레이어의 공간 효율과 안정성을 위해 꾸준히 빌드 방식을 변경하고 개선해가고 있습니다. 따라서, **도커 엔진 버전, 빌드 라이브러리의 종류에 따라 결과물은 조금씩 차이가 있을 수 있습니다**. (Docker 엔진 23 버전부터는 buildx 를 default builder로 사용합니다)<br>
 도커 공식문서에서는 이미지 레이어를 만들 수 있는 상황들에 대해 아래와 같이 설명했습니다.
-> Each layer is only a set of differences from the layer before it. Note that **both adding, and removing files will result in a new layer**.<br>
+> Each layer is only a set of differences from the layer before it. Note that both adding, and removing files will result in a new layer.<br>
 (https://docs.docker.com/storage/storagedriver/)
 
-파일 시스템에 변화를 주지 않는 무의미한 커맨드의 반복이나, echo와 같이 stdout을 발생시키는 커맨드, `LABEL` 과 같은 메타 데이터를 수정하는 명령들은 새로운 이미지를 만들지 않습니다. 메타 데이터의 경우 이미지의 별도 메타 데이터 저장 공간에 JSON 형식으로 저장됩니다.
+파일 시스템에 변화를 주지 않는 무의미한 커맨드의 반복이나, echo와 같이 stdout을 발생시키는 커맨드, 'LABEL' 과 같은 메타 데이터를 수정하는 명령들은 새로운 이미지를 만들지 않습니다. 메타 데이터의 경우 이미지의 별도 메타 데이터 저장 공간에 JSON 형식으로 저장됩니다.
 
 
 ## 원리
 
 해당 원리를 정리하기까지 많은 시행착오를 겪었습니다. 동일한 Dockerfile로 이미지를 만들어도 엔진의 버전에 따라 결과물이 달라지고 예상을 벗어나는 커맨드들이 있었습니다.. (해당 부분은 아래에서 상세히 다루겠습니다.)
 
-위의 Docker Document에서도 명시되었듯이, **이미지 레이어**는 **‘파일시스템의 변경사항을 캡처하는 단위’** 입니다. 아래에는 이미지 레이어와 그 원리에 대해 분석 및 정리한 내용을 다룹니다.
+위의 Docker Document에서도 명시되었듯이, 이미지 레이어는 **‘파일시스템의 변경사항을 캡처하는 단위’** 입니다. 아래에는 이미지 레이어와 그 원리에 대해 분석 및 정리한 내용을 다룹니다.
 
 ### 도커 이미지 레이어란?
 
@@ -45,7 +45,7 @@ usemathjax: true
 
 도커는 이미지를 만들 때 하나의 단일 스냅샷으로 만드는 것이 아닌, 여러 개의 계층(layer)을 가진 다수의 스냅샷으로 나누어 저장합니다. 이는 여러 이미지 파일들을 관리할 때, 이미지들에서 **중복되는 영역을 하나의 레이어를 통해 관리**하여 공간 & 시간 효율을 얻기 위함입니다. 
 
-이는 같은 데이터를 기반으로 하는 다중 이미지에서 중복되는 영역을 하나의 스냅샷으로 관리할 수 있음을 뜻합니다. 마찬가지로 해당 레이어를 각 이미지마다 다운로드 받을 필요도 없어지기 때문에 **이미지의 다운로드 시간도 크게 절약됩니다**. (이는 특히, 이미지의 버전을 관리할 때, 신규 버전을 빌드하는 과정에서 기존 레이어를 그대로 활용할 수 있어 공간, 시간적으로 큰 효율을 가져다 줍니다.)
+이는 같은 데이터를 기반으로 하는 다중 이미지에서 중복되는 영역을 하나의 스냅샷으로 관리할 수 있음을 뜻합니다. 마찬가지로 해당 레이어를 각 이미지마다 다운로드 받을 필요도 없어지기 때문에 이미지의 다운로드 시간도 크게 절약됩니다. (이는 특히, 이미지의 버전을 관리할 때, 신규 버전을 빌드하는 과정에서 기존 레이어를 그대로 활용할 수 있어 공간, 시간적으로 큰 효율을 가져다 줍니다.)
 
 도커의 레이어 방식은 이미지뿐만 아니라 컨테이너가 실행될 때도 사용됩니다. 이미지를 이용해 새로운 컨테이너를 실행하면, 이미지 레이어 스냅샷들이 복원되고 신규 컨테이너 공간에 `mount` 됩니다. 그리고 그 이후 해당 mount 위에 새로운 레이어가 구성되는데, 해당 컨테이너 환경 내에서 발생하는 모든 변경사항이 이 새로운 레이어에 저장됩니다. 이를 **컨테이너 레이어**라 부릅니다.
 
@@ -54,7 +54,7 @@ usemathjax: true
 기존 이미지 레이어들이 Read Only로 읽기만 가능한 것과 반대로, 새로 만들어진 컨테이너 레이어는 Read와 Write가 모두 가능합니다. 대신, 별도의 namespace 공간에서 새로운 레이어를 띄워 작업하기 때문에, 해당 컨테이너가 종료되면 변경사항 또한 모두 함께 삭제됩니다.
 
 ### 도커 이미지 분산의 핵심 'UnionFS'
-위와 같이 파일 시스템을 여러겹의 레이어로 만들고 복원해 사용하기 위해서는, 해당 레이어들을 하나의 파일 시스템처럼 동작하게 하는 시스템이 필요합니다. 이를 가능하게 하는 것이 도커 이미지 레이어에서 핵심 역할을 하는 `Union File System(UnionFS)` 입니다. (~~Unix File System 아님~~)
+위와 같이 파일 시스템을 여러겹의 레이어로 만들고 복원해 사용하기 위해서는, 해당 레이어들을 하나의 파일 시스템처럼 동작하게 하는 시스템이 필요합니다. 이를 가능하게 하는 것이 도커 이미지 레이어에서 핵심 역할을 하는 'Union File System(UnionFS)' 입니다. (~~Unix File System 아님~~)
 
 UnionFS는 **두 개 이상의 디렉토리를 하나의 디렉토리인 것처럼 합쳐서 보여주는 시스템**입니다. 아래 IBM 공식문서에 기입된 예시를 통해 살펴보면, 두 디렉토리간에는 '상위' 와 '하위' 관계가 있고 두 디렉토리의 내용물이 하나의 디렉토리처럼 합쳐져 보여주게 됩니다. 이 때, 두 디렉토리에서 겹치는 정보가 있다면 상위 디렉토리의 데이터를 사용합니다.
 
@@ -71,19 +71,19 @@ mount -t ufs -o upperdir=dir1,lowerdir=dir2,workdir=wrk -f myufs dirM
 
 도커는 이 UnionFS 를 이용해 이미지 레이어를 구성합니다. 여러겹의 레이어를 아래에서부터 하나씩 Union 하여 최종적으로 사용자에게는 모든 레이어가 합쳐진 파일 시스템이 제공됩니다. 
 
-이를 구현하기 위한 다양한 스토리지 드라이버의 호환성을 제공하고 있는데, 기본적으로 사용하게 되는 툴인 `OverlayFS` 와 `vfs`,`devicemapper` 등을 지원합니다. (아직 저도 OverlayFS 이외에는 사용해보지 못했습니다.)
+이를 구현하기 위한 다양한 스토리지 드라이버의 호환성을 제공하고 있는데, 기본적으로 사용하게 되는 툴인 OverlayFS 와 vfs,devicemapper 등을 지원합니다. (아직 저도 OverlayFS 이외에는 사용해보지 못했습니다.)
 
 > https://docs.docker.com/storage/storagedriver/select-storage-driver/
 
 
 ### 도커가 이미지 레이어를 만드는 단위
-본론으로 돌아와서, Docker가 어떠한 경우에 새로운 레이어를 만들고, 어떠한 데이터들이 하나의 레이어에 합쳐져서 표현되는지 분석해보았습니다. 먼저 **Docker Document**에서 이미지 레이어와 관련된 내용들을 모아보면 아래와 같은 내용들이 확인됩니다.
+본론으로 돌아와서, Docker가 어떠한 경우에 새로운 레이어를 만들고, 어떠한 데이터들이 하나의 레이어에 합쳐져서 표현되는지 분석해보았습니다. 먼저 Docker Document에서 이미지 레이어와 관련된 내용들을 모아보면 아래와 같은 내용들이 확인됩니다.
 
-> Commands that modify the filesystem create a layer. The `FROM` statement starts out by creating a layer from the ubuntu:18.04 image. The `LABEL` command only modifies the image’s metadata, and **does not produce a new layer**. The `COPY` command adds some files from your Docker client’s current directory. The first `RUN` command builds your application using the make command, and **writes the result to a new layer**. The second `RUN` command removes a cache directory, and **writes the result to a new layer**. Finally, the `CMD` instruction specifies what command to run within the container, which only modifies the image’s metadata, which **does not produce an image layer**.<br>
+> Commands that modify the filesystem create a layer. The FROM statement starts out by creating a layer from the ubuntu:18.04 image. The LABEL command only modifies the image’s metadata, and **does not produce a new layer**. The COPY command adds some files from your Docker client’s current directory. The first RUN command builds your application using the make command, and **writes the result to a new layer**. The second RUN command removes a cache directory, and **writes the result to a new layer**. Finally, the CMD instruction specifies what command to run within the container, which only modifies the image’s metadata, which **does not produce an image layer**.<br>
 **Each layer is only a set of differences from the layer before it**. Note that both adding, and removing files will result in a new layer. <br><br>
 (https://docs.docker.com/storage/storagedriver/)
 
-위 문장에서 언급된 내용을 토대로 정리하면, **Docker Layer는 이전 레이어와의 차이점을 저장하는 하나의 집합**입니다. 해당 차이란 파일 시스템에서 데이터가 생성되거나 삭제, 수정되는 것을 의미하며, 대표적인 커맨드들에 대한 예시는 아래와 같습니다.
+위 문장에서 언급된 내용을 토대로 정리하면, Docker Layer는 이전 레이어와의 차이점을 저장하는 하나의 집합입니다. 해당 차이란 파일 시스템에서 데이터가 생성되거나 삭제, 수정되는 것을 의미하며, 대표적인 커맨드들에 대한 예시는 아래와 같습니다.
 
 - `FROM`: FROM은 기존 이미지를 참조하는 문장으로, 새로운 레이어를 만들진 않지만 해당 이미지의 레이어들을 가져옵니다.
 - `LABEL`: LABEL은 이미지의 메타데이터만 수정하므로 새로운 레이어를 만들지 않습니다.
@@ -94,17 +94,17 @@ mount -t ufs -o upperdir=dir1,lowerdir=dir2,workdir=wrk -f myufs dirM
 하지만, 위 공식문서 내용만으로는 실제로 어떻게 동작하는지 명확치 않은 부분들이 존재합니다. 그래서 아래 실제 테스트를 통해 Dockerfile을 빌드했을 때 어떻게 동작하는지 테스트해보았습니다. 
 
 #### 실제 테스트
-테스트는 **도커 엔진 20** 버전, 스토리지 드라이버로 **OverlayFS(overlay2)**를 사용했습니다. 테스트는 총 4가지 사례를 살펴볼 예정이며, 테스트에 사용된 분석 방식은 아래와 같습니다.
+테스트는 도커 엔진 20 버전, 스토리지 드라이버로 OverlayFS(overlay2)를 사용했습니다. 테스트는 총 4가지 사례를 살펴볼 예정이며, 테스트에 사용된 분석 방식은 아래와 같습니다.
 
-1. Dockerfile로 Docker Image를 빌드하고 `Inspect` 명령어를 통해 **이미지 layer들의 ID**를 확인합니다. (RootFS의 Layers를 확인합니다.)
-2. 실제 이미지 레이어가 저장된 디렉토리로 이동해 각 레이어에 저장된 **변경점**을 확인합니다. (*'/var/lib/docker/overlay2'* 에 위치해있습니다.)
+1. Dockerfile로 Docker Image를 빌드하고 *Inspect* 명령어를 통해 이미지 layer들의 ID를 확인합니다. (RootFS의 Layers를 확인합니다.)
+2. 실제 이미지 레이어가 저장된 디렉토리로 이동해 각 레이어에 저장된 변경점을 확인합니다. (*'/var/lib/docker/overlay2'* 에 위치해있습니다.)
 3. Dockerfile의 각 라인과 비교하며, 어떤 변경사항들이 레이어로 기록되었는지 확인하고, 레이어로 만들어지지 않은 라인도 체크합니다. 
 
-> Overlay2의 경우 **도커 이미지 레이어의 ID가, 실제 저장된 디렉토리의 ID와 일치하지 않습니다**. 다만, 각 레이어 디렉토리는 자신 바로 하위 레이어의 ID를 담고 있는 `lower` 파일이 존재하는데, 이를 통해 레이어들의 순서를 찾을 수 있습니다. (최하단 레이어는 lower 파일이 존재하지 않습니다.)
+> Overlay2의 경우 도커 이미지 레이어의 ID가, 실제 저장된 디렉토리의 ID와 일치하지 않습니다. 다만, 각 레이어 디렉토리는 자신 바로 하위 레이어의 ID를 담고 있는 'lower' 파일이 존재하는데, 이를 통해 레이어들의 순서를 찾을 수 있습니다. (최하단 레이어는 lower 파일이 존재하지 않습니다.)
 
 <br>
 ##### 1) 중복 라인이 많은 데이터
-위 공식 문서에 언급된 **COPY, RUN** 커맨드를 여러번 중복해서 실행시켜보았습니다. 같은 커맨드가 두 번 이상 실행될 때부터는 더 이상 파일 시스템에 변화를 주지 않지만, 이미지 레이어를 만드는지 확인해보았습니다.
+위 공식 문서에 언급된 **COPY, RUN** 커맨드를 여러번 중복해서 실행시켜보았습니다. 같은 커맨드가 여러번 실행되면, 두 번째부터는 더 이상 파일 시스템에 변화를 주지 않습니다. 이 경우에도 각 커맨드마다 이미지 레이어를 만드는지 확인해보았습니다.
 
 **1.1. 이미지 빌드 후 Inspect**<br>
 
@@ -176,7 +176,7 @@ test.txt
 ...결국 moby/moby(도커 엔진 프로젝트) 소스코드를 직접 확인해보았는데, 해당 코드들이 빌드툴 및 버전에 따라 동작이 다르긴 하지만, COPY, ADD 커맨드의 경우 동작 도중에 반드시 신규 Layer를 형성하는 것으로 확인되었습니다. (해당 내용은 또 추후에 버전이 업그레이드되면서 변경될 수 있습니다)
 
 **1.2.5. '4c604...' (여섯 번째):**<br>
-여섯번째 레이어는 아래 보시는 바와 같이 `RUN mkdir -p /test2` 에 대한 변경사항입니다. Dockerfile 에서는 총 2번 실행했으나 하나의 레이어만 만들어졌습니다. `RUN` 커맨드의 경우 앞의 레이어와 diff가 존재하지 않는다면 레이어를 별도로 생성하지 않는 것으로 보입니다.
+여섯번째 레이어는 아래 보시는 바와 같이 `RUN mkdir -p /test2` 에 대한 변경사항입니다. Dockerfile 에서는 총 2번 실행했으나 하나의 레이어만 만들어졌습니다. RUN 커맨드의 경우 앞의 레이어와 diff가 존재하지 않는다면 레이어를 별도로 생성하지 않는 것으로 보입니다.
 ```console
 [root@ip-172-31-47-234 diff]# ls
 test2
@@ -189,7 +189,7 @@ test2
 test.txt
 ```
 
-추가적으로, `COPY ./test.txt .` 커맨드가 마지막 레이어를 구성한 것으로 보아, 나머지 두 `RUN`, `CMD` 커맨드는 레이어를 만들지 않은 것으로 보여집니다. (CMD의 경우 Docker Docs에도 메타데이터만 변경된다고 명시되어 있습니다.) 
+추가적으로, `COPY ./test.txt .` 커맨드가 마지막 레이어를 구성한 것으로 보아, 나머지 두 RUN, CMD 커맨드는 레이어를 만들지 않은 것으로 보여집니다. (CMD의 경우 Docker Docs에도 메타데이터만 변경된다고 명시되어 있습니다.) 
 
 <br>
 ##### 2) 기존 빌드 된 이미지 레이어의 재사용
@@ -254,7 +254,7 @@ RUN mkdir -p test
 CMD ["echo", "abcd"]
 ```
 
-위 dockerfile로 빌드한 결과물은 아래와 같습니다. `COPY ./test.txt .`가 중복해서 실행된 5번째 레이어까지는 이전 이미지와 동일하게 사용하며, 변경된 `mkdir` 결과만 새로운 레이어로 구성되었습니다.
+위 dockerfile로 빌드한 결과물은 아래와 같습니다. `COPY ./test.txt .`가 중복해서 실행된 5번째 레이어까지는 이전 이미지와 동일하게 사용하며, 변경된 mkdir 결과만 새로운 레이어로 구성되었습니다.
 ```shell
 "Layers": [
     "sha256:bb01bd7e32b58b6694c8c3622c230171f1cec24001a82068a8d30d338f420d6c",
@@ -317,18 +317,18 @@ Successfully tagged test2:latest
 테스트 결과, 신규 이미지는 기존 이미지의 레이어를 잘 활용하여 변경된 부분만 빌드 및 저장된 것으로 확인되었습니다.
 
 #### 테스트 결과
-테스트 결과, Dockerfile이 각 커맨드들을 파싱하여 실제 동작을 수행할 때, 각 커맨드마다 레이어를 만들지 만들지 않을지 먼저 결정이 되고, 몇몇 `RUN`과 같은 커맨드들은 파일시스템에 변화가 없을 경우 레이어를 만들지 않는 것으로 보입니다. 또한 그렇게 만들어진 이미지 레이어들은 다른 이미지를 생성할 때도 활용되어 효율적으로 이미지가 관리되고 있는 것이 확인되었습니다.
+테스트 결과, Dockerfile이 각 커맨드들을 파싱하여 실제 동작을 수행할 때, 각 커맨드마다 레이어를 만들지 만들지 않을지 먼저 결정이 되고, 몇몇 RUN과 같은 커맨드들은 파일시스템에 변화가 없을 경우 레이어를 만들지 않는 것으로 보입니다. 또한 그렇게 만들어진 이미지 레이어들은 다른 이미지를 생성할 때도 활용되어 효율적으로 이미지가 관리되고 있는 것이 확인되었습니다.
 
 그리고 이 테스트 결과는, 위에 명시하진 않았지만 엔진 버전마다 조금씩 다르게 나옵니다. 현재의 분석이 특정 문제를 해결하기 위함이 아니였기 때문에, 이 모든 차이점들을 다 분석하지는 않기로 했습니다. 중요한 것은 각 **Dockerfile의 커맨드들은 새로운 레이어를 만들 가능성이 있기 때문에, 중간에 불필요한 레이어가 만들어지지 않도록 개발과정에서 신경써야한다는 점**입니다.
 
 
 ## 더 나아가서 <small>(공간 효율적인 Dockerfile 작성 방법)</small>
-앞선 분석을 통해 도커 이미지 레이어의 생성 원리를 이해하는 것에서 더 나아가, 이를 응용해 실제 도커를 사용하면서 **효과적으로 Dockerfile 을 작성하는 방법**에 대해 공유하고 마치겠습니다.
+앞선 분석을 통해 도커 이미지 레이어의 생성 원리를 이해하는 것에서 더 나아가, 이를 응용해 실제 도커를 사용하면서 효과적으로 Dockerfile 을 작성하는 방법에 대해 공유하고 마치겠습니다.
 
 도커 이미지는 배포되는 과정에서 여러번 pull & push 되기 때문에 **이미지의 크기가 작을수록 배포 속도가 향상되며 disk 공간이 낭비되지 않습니다**. 앞서 언급했듯 도커 이미지는 층이 만들어져있기 때문에, 최종 이미지에 사용되지 않는 파일들이 중간 레이어에 남아있을 수 있습니다. 이미지 크기를 효율적으로 관리하기 위해선, 이러한 중간 레이어의 불필요한 크기를 줄여야 합니다.
 이를 해결하기 위한 좋은 방법은, 레이어로 만들어질 필요 없는 커맨드들을 이전 커맨드와 합쳐서 실행시키는 것입니다.
 
-실제 예시를 보며 설명드리겠습니다. 아래 예시는 Docker Docs에 언급되어 있는 간단한 예시로, 기본 **빌드 커맨드**에 **빌드 캐시를 삭제하는 커맨드**를 **하나의 커맨드로 합쳐** 실행하여, 레이어의 크기가 커지지 않도록 방지하는 예시입니다.
+실제 예시를 보며 설명드리겠습니다. 아래 예시는 Docker Docs에 언급되어 있는 간단한 예시로, 기본 빌드 커맨드와 빌드 과정에서 발생하는 캐시를 삭제하는 커맨드를 하나의 커맨드로 합쳐 실행하여, 레이어의 크기가 커지지 않도록 방지하는 예시입니다.
 
 **Dockerfile (before)**
 ```shell
