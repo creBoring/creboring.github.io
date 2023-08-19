@@ -18,6 +18,8 @@ body {
 /* 변수 처리 scss */
 $media-size-mobile: 992px;
 $media-size-tiny: 768px;
+$media-size-labtop: 1280px;
+$media-size-pc: 1920px;
 
 .jumbotron-heading {
   font-size: 35px !important;
@@ -390,22 +392,40 @@ figure > img {
 
 /* TOC 관련 css */
 .toc {
-  position: relative;
-  // top: 168px;
-  width: 100%;
-  color: var(--default-toc-color) !important;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin: 0.75rem 0;
-  font-size: 1rem;
+  position: absolute;
+  width: 15vw;
+  right: 5vw;
+  height: 100vh;
 
+  padding-top:10vh;
+
+  color: var(--default-toc-color) !important;
+  font-size: 1rem;
   display: none;
-  @media (min-width: $media-size-mobile){
+
+  @media (min-width: $media-size-pc) {
+    right: 14vw;
+  }
+
+  @media (min-width: $media-size-labtop){
     display: block;
   }
 
   .toc-container {
-    margin: 0 0.75rem;
+    position: sticky;
+    top:10vh;
+    left:0;
+
+    border-left: 2px solid #F1F3F5;
+    padding-left: 15px;
+
+    transition: all 0.5s;
+  }
+
+  .toc-container-non_display {
+    right: -20vw;
+    visibility: hidden;
+    opacity: 0;
   }
 
   a.toc-active {
@@ -419,7 +439,7 @@ figure > img {
     list-style-type: none !important;
     margin-bottom: 0.1rem;
     padding-left: 0rem;
-    margin-left: 1.5rem !important;
+    margin-left: 1rem !important;
     li {
       padding-left: .5rem;
     }

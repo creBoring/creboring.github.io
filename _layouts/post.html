@@ -39,12 +39,7 @@ layout: default
           </div>
         </div>
       </div>
-      <div class="toc">
-        <div class="toc-container">
-          <a href="#" class="toc-active">맨 위로</a>
-          {% include toc.html html=content %}
-        </div>
-      </div>
+      
     </div>
   </div> -->
   <div class="col-lg-9 row justify-content-center">
@@ -53,9 +48,16 @@ layout: default
       {%- include blog_post_comments.html-%}
     </div>
   </div>
+  <div id="toc" class="toc">
+    <div id="toc-container" class="toc-container toc-container-non_display">
+      <a href="#" class="toc-active">맨 위로</a>
+      {% include toc.html html=content %}
+    </div>
+  </div>
 </div>
 
 
+<!-- TOC Active -->
 <script>
   let article = undefined;
   let articleY = undefined;
@@ -150,5 +152,21 @@ layout: default
     initToc();
     doToc();
     initEventListener();
+  });
+</script>
+
+<!-- TOC Position -->
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const post_body = document.querySelector('.post-body');
+      const toc = document.getElementById('toc');
+      const toc_container = document.getElementById('toc-container');
+
+      const post_body_height = post_body.offsetHeight + 'px';
+      toc.style.height = post_body_height;
+
+      toc_container.classList.remove('toc-container-non_display');
+    }, 500)
   });
 </script>
