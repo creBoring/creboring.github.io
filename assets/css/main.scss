@@ -400,11 +400,11 @@ figure > img {
   padding-top:10vh;
 
   color: var(--default-toc-color) !important;
-  font-size: 1rem;
+  font-size: 0.9rem;
   display: none;
 
   @media (min-width: $media-size-pc) {
-    right: 14vw;
+    right: 12vw;
   }
 
   @media (min-width: $media-size-labtop){
@@ -413,7 +413,7 @@ figure > img {
 
   .toc-container {
     position: sticky;
-    top:10vh;
+    top:17vh;
     left:0;
 
     border-left: 2px solid #F1F3F5;
