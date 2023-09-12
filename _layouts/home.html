@@ -16,13 +16,13 @@ layout: full-width
          {%- include github_star_button.html -%}
          {%- include github_follow_button.html -%}
     </div>
-    <div class="col-lg-8 col-align-center">
+    <div class="col-lg-7 col-align-center">
       <section id="recent-articles">
         <div id="recent-articles-title">
           <h2 class="card-title">최근 게시물</h2>
         </div>
         <ul>
-          {% for post in site.posts limit:5 %}
+          {% for post in site.posts limit:10 %}
           <li class="article-card">
             <a href="{{post.url}}" class="article-card-link">
               <div id="article-container">
