@@ -13,6 +13,7 @@ usemathjax: true
 ---
 
 <br>
+<!-- excerpt-start -->
 여러 작업 환경에서 Terraform 코드를 작성하다보니 tfstate 파일이 잘 관리되지 않아 파일을 원격지에서 관리하게 되었습니다. AWS 인프라를 Terraform으로 작성하던지라 S3와 DynamoDB를 이용해 backend와 lock을 구현하게 되었는데, s3는 이해가 되었지만 dynamodb로 어떻게 lock을 구현한다는건지 의문이 들어 동작 원리를 분석하게 되었습니다. 
 
 ## 결론

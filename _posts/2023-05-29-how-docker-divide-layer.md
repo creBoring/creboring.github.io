@@ -17,6 +17,7 @@ usemathjax: true
     <img src="/assets/img/posts/category/Docker-family.jpeg" class="img-fluid">
 </figure>
 
+<!-- excerpt-start -->
 최근 AWS 계정의 리소스를 이전하는 과정에서 이미지를 직접 pull & push 하게 되었는데, 개발계 이미지를 먼저 pull 한 상태로 운영계의 이미지를 가져오니 대부분의 레이어는 already exists로 캐시를 사용하고, 가장 마지막 단계만 별도로 download 되었습니다. 도커가 빌드 효율과 시간 단축을 위해 레이어를 만들어 저장하고 있다는 사실은 알고있었지만, 어떠한 기준으로 레이어를 나누게 되는 것인지 의문이 들어 원리를 분석해보았습니다. 
 
 ## 결론

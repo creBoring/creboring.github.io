@@ -12,6 +12,7 @@ permalink: /blog/codepipeline-s3-deploy-automation/
 usemathjax: true
 ---
 
+<!-- excerpt-start -->
 Amazon S3는 Object형 저장소를 제공하는 아마존의 대표 서비스입니다. 간단한 설정을 통해 S3를 정적 웹 서버로 호스팅 할 수도 있는데, 현재 게시글에서는 이와 같이 S3 정적 웹 호스팅을 이용해 웹서버 또는 단순한 홈페이지를 운영하는 경우 소스코드를 S3로 배포하는 방법들을 설명합니다. 
 
 파이프라인의 전체적인 흐름이 궁금하신 경우 아래 게시글을 먼저 읽고 오실 것을 추천드립니다 :)

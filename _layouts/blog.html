@@ -2,30 +2,46 @@
 layout: default
 ---
 <div class="col-lg-12">
- <div class="row justify-content-center">
-      <div class="col-lg-8">
+ <div class="row justify-content-center" style="margin-top:50px;">
+      <div class="col-lg-10">
           <ul>
               <div class="row">
                   {% for post in paginator.posts %}
-
-                  <li class="card blog-post">
-                      <a href="{{post.url | prepend: site.baseurl }}" data-disqus-identifier="{{ post.url }}" class="article-card-link">
-                          <div id="article-container">
-                              <div id="article-img">
-                                  <img
-                                          src="{{site.url}}{{site.baseurl}}{{post.thumbnail}}"
-                                          alt="{{ post.title }}"
-                                          width="150px"
-                                          height="75px"
-                                  />
-                              </div>
-                              <div id="article-link">
-                                  <span class="recent-article-link"><b>{{post.title}}</b> </span>
-                                  <br>
-                                  <span style="color: #777; font-size: 16px;">{{ post.summary }}</span> <span style="color: #ccc; font-size: 15px;"><i><time datetime="{{ post.date }}" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</time></i></span>
-                              </div>
-                          </div>
-                      </a>
+                  <li class="article-card">
+                    <a href="{{post.url}}" class="article-card-link">
+                      <div id="article-container">
+                        <div id="article-img" class="article-img">
+                          {% if post.author %}
+                            {% assign author = post.author %}
+                            {% if author %}
+                              {% assign author_data = site.data.authors[author] %}
+                              <img
+                              src="{{post.thumbnail}}"
+                              width="280px"
+                              height="150px"
+                              style="border-radius: 6px;"
+                            />
+                            {% endif %}
+                          {% endif %}
+          
+                        </div>
+                        <div id="article-link">
+                            <span class="recent-article-link"><b>{{post.title}}</b></span>
+                            <br>
+                            <span style="color: #ccc; font-size: 15px;">
+                              <time datetime="{{ post.date }}" itemprop="datePublished">{{ post.date | date: "%Y년%m월%d일" }}</time>
+                            </span>
+                            <br>
+                            {% assign excerptParts = post.content | split: "<!-- excerpt-start -->" %}
+                            <span class="article-desc" style="color: #777; font-size: 16px;">{{ excerptParts[1] | strip_html | truncatewords: 35}}</span>
+                        </div>
+                        <div id="article-alert" class="article-tags">
+                        {% for cat in post.category limit:1 %}
+                          <button class="btn btn-sm btn-dark">{{cat}}</button>
+                        {% endfor %}
+                        </div>
+                      </div>
+                    </a>
                   </li>
                   {% endfor %}
               </div>

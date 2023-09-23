@@ -16,6 +16,7 @@ usemathjax: true
     <img src="/assets/img/posts/category/terraform_x_athena.png" class="img-fluid">
 </figure>
 
+<!-- excerpt-start -->
 테라폼으로 Glue Catalog 테이블 및 View를 만드려고 공식 문서에 들어가보면, 테이블에 대한 사용법만 있고, View에 대해서는 아무런 사용 방법도 명시되어 있지 않습니다. 테이블과 달리 View의 경우 복잡한 쿼리문이나 Join문이 쿼리에 포함될 수도 있는데, 이를 테라폼으로 구현하는 방법에 대해 정리해보았습니다.
 
 ## Terraform 리소스 

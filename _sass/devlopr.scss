@@ -193,7 +193,6 @@ header {
 /* bootstrap override */
 .container-fluid {
     padding: 0px !important;
-    width: fit-content !important;
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
@@ -634,7 +633,7 @@ header {
     margin: 5px;
 }
 .recent-article-link{
-    font-size: 20px;
+    font-size: 24px;
     text-decoration: none;
 }
 .article-card-link, .article-card-link:hover{
@@ -643,6 +642,7 @@ header {
 }
 .article-card{
     list-style-type: none;
+    margin-bottom: 15px;
 }
 .article-card a :hover{
     text-decoration: none;
@@ -788,81 +788,91 @@ footer {
 
 @media (min-width: 320px) and (max-width: 480px) {
 
-         header {
-              height: auto;
-              text-align: center;
-              background-color: var(--main-background-color);
-              box-shadow:0px;
-              height: auto;
-              width: 100%;
-              padding: 1px;
+    header {
+        height: auto;
+        text-align: center;
+        background-color: var(--main-background-color);
+        box-shadow:0px;
+        height: auto;
+        width: 100%;
+        padding: 1px;
 
-                 #author-img {
-                     margin-left: auto;
-                     margin-right: auto;
-                     width: 100%;
-                 }
+        #author-img {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
 
-                 #author_details {
-                     text-align: center;
-                 }
-          }
+        #author_details {
+            text-align: center;
+        }
+    }
 
-            #mc-embedded-subscribe-form {
-                width: 100%;
-                padding: 50px;
-            }
+    #mc-embedded-subscribe-form {
+        width: 100%;
+        padding: 50px;
+    }
 
-            #mc_embed_signup_scroll_footer {
-                margin-left: 5%;
-                margin-right: 5%;
-                text-align: center;
-                font-size: 12px;
-            }
+    #mc_embed_signup_scroll_footer {
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+        font-size: 12px;
+    }
 
-            #mce-EMAIL_footer {
-                width: 200px;
-                padding: 14px;
-                color: #111;
-                border-color: #fff;
-                text-align: center;
-                text-transform: capitalize;
-                border: 1px solid #fff;
-            }
+    #mce-EMAIL_footer {
+        width: 200px;
+        padding: 14px;
+        color: #111;
+        border-color: #fff;
+        text-align: center;
+        text-transform: capitalize;
+        border: 1px solid #fff;
+    }
 
-            #mc-embedded-subscribe_footer {
-                margin-top: 30px;
-            }
+    #mc-embedded-subscribe_footer {
+        margin-top: 30px;
+    }
 
-            .blog-post {
-                width: 100%;
-                height: auto;
-                margin: 20px !important;
-            }
+    .blog-post {
+        width: 100%;
+        height: auto;
+        margin: 20px !important;
+    }
 
-            .product{
-                width: auto;
-                float:left;
-            }
-            #topNav {
-                padding-left:  0px;
-                padding-right: 0px;
-            }
+    .product{
+        width: auto;
+        float:left;
+    }
+    #topNav {
+        padding-left:  0px;
+        padding-right: 0px;
+    }
 
-            .navbar-brand {
-                display: inline-block;
-                padding-top: .3125rem;
-                padding-bottom: .3125rem;
-                margin-right: 1rem;
-                font-size: 1.25rem;
-                line-height: inherit;
-                white-space: nowrap;
+    .navbar-brand {
+        display: inline-block;
+        padding-top: .3125rem;
+        padding-bottom: .3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+    
+    .jumbotron-heading {
+        padding-top: 1rem !important;
+        padding-bottom: 0 !important;
+        font-size: 24px !important;
+    }
 
-            }
-            .jumbotron {
-                padding: 10rem 1rem !important;
-            }
+    .card-title {
+        padding-top: 3rem;
+        font-size: 24px !important;
+    }
 
+    .recent-articles {
+        padding: 0 10px;
+    }
 }
 
 /* Smartphones */
@@ -939,10 +949,12 @@ footer {
           margin-left: -30px;
 
       }
-      .jumbotron {
-          padding: 10rem 1rem !important;
-      }
 
+    .jumbotron-heading {
+        padding-top: 1rem !important;
+        padding-bottom: 0 !important;
+        font-size: 24px !important;
+    }
 }
 
  /*
