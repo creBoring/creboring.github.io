@@ -16,8 +16,8 @@ urls:
 author_logo: /authors/profile.jpeg
 author: Dohun Lee
 author_kr: 이도훈
-author_description: FinOps Developer
-author_bio: 안녕하세요, <b>이도훈</b>입니다. <b>AWS파트너사</b>에서 <b>클라우드 엔지니어</b>로 4년간 AWS 인프라 구성/구축 기술 지원 업무를 수행했으며, 이후 <b>개발팀</b>으로 이동하여 Java, Spring, AWS, MySQL, Athena 기반으로 CMP(Cloud Management Platform) <b>빌링 플랫폼</b>을 개발하고 있습니다.<br><br>다수 프로젝트에서 <b>AWS</b>로의 마이그레이션, 신규 인프라 구축 경험이 있으며, AWS 파트너로써 고객 대상으로 AWS Immersionday 세미나 발표를 맡았습니다.
+author_description: DevOps Engineer
+author_bio: 안녕하세요, DevOps Engineer 역할을 수행중인 <b>이도훈</b>입니다.<br>현재 새로운 업무 환경에 적응 중입니다 'u'
 author_email: "crebr.ldh@gmail.com"
 author_website_url: "creboring.net"
 author_location: South Korea
@@ -25,14 +25,23 @@ typewrite-text: HTTP 200 OK... Welcome! •‿•
 
 # Experiences
 author_work_experiences:
+            - company_name: 드라마앤컴퍼니
+              company_logo: remember.png
+              company_url: https://dramancompany.com/
+              designation: 데브옵스 엔지니어
+              period: 2024.01 ~ 현재
+              descriptions:
+                - AWS 인프라 및 시스템 유지보수 및 개선
+                - 아직 적응 중
+              visibility: true
             - company_name: 솔트웨어 주식회사
               company_logo: saltware.png
               company_url: https://www.saltware.co.kr
               designation: 빌링 플랫폼 개발자
-              period: 2021.07 ~ 현재
+              period: 2021.07 ~ 2023.12
               descriptions:
-                - CMP(Cloud Management Platform) 개발 및 유지보수<br>
-                - 사내 AWS 인프라 관리 및 유지보수<br>
+                - CMP(Cloud Management Platform) 개발 및 유지보수
+                - 사내 AWS 인프라 관리 및 유지보수
                 - AWS CUR 빌링 데이터 핸들링
               visibility: true
             - company_name: 솔트웨어 주식회사
