@@ -143,7 +143,6 @@ plugins:
   - jekyll-gist
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-menus
   - jekyll-admin
 
 # Jekyll Admin Config
