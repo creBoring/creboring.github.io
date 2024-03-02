@@ -7,7 +7,7 @@ date: '2024-01-23 23:33:50 +0900'
 category: [Linux]
 thumbnail: /assets/img/posts/2024-01-23/thumbnail.jpg
 title-img: /assets/img/posts/category/blacksmith.jpg
-keywords: Terraform, 테라폼, terraform cloud, cloud, aws, 테라폼 클라우드, 클라우드
+keywords: Linux, 리눅스, jq, jqlang, JSON, 필터, cli, 문법
 permalink: /blog/how-to-use-jq/
 usemathjax: true
 ---
