@@ -1,15 +1,14 @@
-title: 잡다한 기술공방
-subtitle: 근데 이제 IT를 곁들인
+title: DevOps Playbook
+subtitle:
 description: >- # this means to ignore newlines until "baseurl:"
 logo: dohunlee_pixel.jpeg
-
 url: "https://creboring.net" # the base hostname & protocol for your site, e.g. https://example.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
 
 # Navigation
 urls:
-    - text: 기술블로그
-      url: /blog
+  - text: Posts
+    url: /blog
 
 # Edit Author details (For multi authors check _data/authors.yml)
 
@@ -25,78 +24,76 @@ typewrite-text: HTTP 200 OK... Welcome! •‿•
 
 # Experiences
 author_work_experiences:
-            - company_name: 드라마앤컴퍼니
-              company_logo: remember.png
-              company_url: https://dramancompany.com/
-              designation: 데브옵스 엔지니어
-              period: 2024.01 ~ 현재
-              descriptions:
-                - AWS 인프라 및 시스템 유지보수 및 개선
-                - 아직 적응 중
-              visibility: true
-            - company_name: 솔트웨어 주식회사
-              company_logo: saltware.png
-              company_url: https://www.saltware.co.kr
-              designation: 빌링 플랫폼 개발자
-              period: 2021.07 ~ 2023.12
-              descriptions:
-                - CMP(Cloud Management Platform) 개발 및 유지보수
-                - 사내 AWS 인프라 관리 및 유지보수
-                - AWS CUR 빌링 데이터 핸들링
-              visibility: true
-            - company_name: 솔트웨어 주식회사
-              company_logo: saltware.png
-              company_url: https://www.saltware.co.kr
-              designation: 클라우드 엔지니어(기술 지원 매니저)
-              period: 2017.09 ~ 2021.07
-              descriptions:
-                - AWS 파트너사 기술 지원 매니저
-                - 고객사 AWS 인프라 구성 구축 및 유지보수
-                - AWS 파트너사 Immersionday 발표자
-              visibility: true
+  - company_name: 드라마앤컴퍼니
+    company_logo: remember.png
+    company_url: https://dramancompany.com/
+    designation: 데브옵스 엔지니어
+    period: 2024.01 ~ 현재
+    descriptions:
+      - AWS 인프라 및 시스템 유지보수 및 개선
+      - 아직 적응 중
+    visibility: true
+  - company_name: 솔트웨어 주식회사
+    company_logo: saltware.png
+    company_url: https://www.saltware.co.kr
+    designation: 빌링 플랫폼 개발자
+    period: 2021.07 ~ 2023.12
+    descriptions:
+      - CMP(Cloud Management Platform) 개발 및 유지보수
+      - 사내 AWS 인프라 관리 및 유지보수
+      - AWS CUR 빌링 데이터 핸들링
+    visibility: true
+  - company_name: 솔트웨어 주식회사
+    company_logo: saltware.png
+    company_url: https://www.saltware.co.kr
+    designation: 클라우드 엔지니어(기술 지원 매니저)
+    period: 2017.09 ~ 2021.07
+    descriptions:
+      - AWS 파트너사 기술 지원 매니저
+      - 고객사 AWS 인프라 구성 구축 및 유지보수
+      - AWS 파트너사 Immersionday 발표자
+    visibility: true
 
 # Education
 author_education_details:
-              - college_logo: kpu.png
-                college_name: 한국산업기술대학교
-                college_url: https://www.kpu.ac.kr
-                college_degree: 정보통신기술공학과
-                description: 한국산업기술대학교 주말 4년제 ICT 학과
-                period: 2018.03 ~ 2022.02
-                visibility: true
-              - college_logo: dsm.png
-                college_name: 대덕소프트웨어마이스터고등학교
-                college_url: https://dsmhs.djsch.kr
-                college_degree: 소프트웨어개발과
-                description: 소프트웨어 개발 전문 마이스터 고등학교
-                period: 2015.03 ~ 2018.02
-                visibility: true
+  - college_logo: kpu.png
+    college_name: 한국산업기술대학교
+    college_url: https://www.kpu.ac.kr
+    college_degree: 정보통신기술공학과
+    description: 한국산업기술대학교 주말 4년제 ICT 학과
+    period: 2018.03 ~ 2022.02
+    visibility: true
+  - college_logo: dsm.png
+    college_name: 대덕소프트웨어마이스터고등학교
+    college_url: https://dsmhs.djsch.kr
+    college_degree: 소프트웨어개발과
+    description: 소프트웨어 개발 전문 마이스터 고등학교
+    period: 2015.03 ~ 2018.02
+    visibility: true
 
 # Certificates
 author_certifications:
   types:
-        - type_name: AWS
-        - type_name: HRDK
+    - type_name: AWS
+    - type_name: HRDK
   certificates:
-        - certificate_name: Solutions Architect - Associate
-          certificate_authenticator: AWS
-        - certificate_name: SysOps Administrator - Associate
-          certificate_authenticator: AWS
-        - certificate_name: Developer - Associate
-          certificate_authenticator: AWS
-        - certificate_name: Solutions Architect - Professional
-          certificate_authenticator: AWS
-        - certificate_name: DevOps Engineer - Professional
-          certificate_authenticator: AWS
-        - certificate_name: Security - Specialty
-          certificate_authenticator: AWS
-        - certificate_name: 정보처리기사
-          certificate_authenticator: HRDK
-
-
+    - certificate_name: Solutions Architect - Associate
+      certificate_authenticator: AWS
+    - certificate_name: SysOps Administrator - Associate
+      certificate_authenticator: AWS
+    - certificate_name: Developer - Associate
+      certificate_authenticator: AWS
+    - certificate_name: Solutions Architect - Professional
+      certificate_authenticator: AWS
+    - certificate_name: DevOps Engineer - Professional
+      certificate_authenticator: AWS
+    - certificate_name: Security - Specialty
+      certificate_authenticator: AWS
+    - certificate_name: 정보처리기사
+      certificate_authenticator: HRDK
 
 # social links
-github_username:  creBoring
+github_username: creBoring
 linkedin_username: l22d0hun
 instagram_username: l22_d0hun
 
@@ -129,8 +126,7 @@ collections:
     output: true
 
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: authors
     values:
@@ -154,7 +150,6 @@ jekyll_admin:
   #   - datafiles
   #   - configuration
   homepage: "posts"
-
 
 # Exclude from processing.
 # The following items will not be processed, by default.

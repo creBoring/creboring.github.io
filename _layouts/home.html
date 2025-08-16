@@ -3,59 +3,55 @@ layout: full-width
 ---
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#typewriteText").typewrite({
       actions: [{ type: "{{site.typewrite-text}}" }]
     });
   });
-</script> 
-    <div class="jumbotron" style="text-align: center;">
-      <p class="jumbotron-heading">LDH 기술 블로그</p>
-      <p class="lead" id="typewriteText"></p>
-    </div>
-    <section id="recent-articles" class="recent-articles" style="max-width: 1140px !important;">
-      <br>
-      <ul>
-        {% for post in site.posts limit:10 %}
-        <li class="article-card">
-          <a href="{{post.url}}" class="article-card-link">
-            <div id="article-container">
-              <div id="article-img" class="article-img">
-                {% if post.author %}
-                  {% assign author = post.author %}
-                  {% if author %}
-                    {% assign author_data = site.data.authors[author] %}
-                    <img
-                    src="{{post.thumbnail}}"
-                    width="280px"
-                    height="150px"
-                    style="border-radius: 6px;"
-                  />
-                  {% endif %}
-                {% endif %}
+</script>
+<div class="jumbotron" style="text-align: center;">
+  <p class="jumbotron-heading">DevOps Playbook</p>
+  <p class="lead" id="typewriteText"></p>
+</div>
+<section id="recent-articles" class="recent-articles" style="max-width: 1140px !important;">
+  <br>
+  <ul>
+    {% for post in site.posts limit:10 %}
+    <li class="article-card">
+      <a href="{{post.url}}" class="article-card-link">
+        <div id="article-container">
+          <div id="article-img" class="article-img">
+            {% if post.author %}
+            {% assign author = post.author %}
+            {% if author %}
+            {% assign author_data = site.data.authors[author] %}
+            <img src="{{post.thumbnail}}" width="280px" height="150px" style="border-radius: 6px;" />
+            {% endif %}
+            {% endif %}
 
-              </div>
-              <div id="article-link">
-                  <span class="recent-article-link"><b>{{post.title}}</b></span>
-                  <br>
-                  <span style="color: #ccc; font-size: 15px;">
-                    <time datetime="{{ post.date }}" itemprop="datePublished">{{ post.date | date: "%Y년%m월%d일" }}</time>
-                  </span>
-                  <br>
-                  {% assign excerptParts = post.content | split: "<!-- excerpt-start -->" %}
-                  <span class="article-desc" style="color: #777; font-size: 16px;">{{ excerptParts[1] | strip_html | truncatewords: 35}}</span>
-              </div>
-              <div id="article-alert" class="article-tags">
-              {% for cat in post.category limit:1 %}
-                <button class="btn btn-sm btn-dark">{{cat}}</button>
-              {% endfor %}
-              </div>
-            </div>
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-      <div id="recent-article-footer" class="flex-align-right">
-        <a class="btn btn-sm btn-dark" href="/blog"> 전체 보기 ></a>
-      </div>
-    </section>
+          </div>
+          <div id="article-link">
+            <span class="recent-article-link"><b>{{post.title}}</b></span>
+            <br>
+            <span style="color: #ccc; font-size: 15px;">
+              <time datetime="{{ post.date }}" itemprop="datePublished">{{ post.date | date: "%Y년%m월%d일" }}</time>
+            </span>
+            <br>
+            {% assign excerptParts = post.content | split: "<!-- excerpt-start -->" %}
+            <span class="article-desc" style="color: #777; font-size: 16px;">{{ excerptParts[1] | strip_html |
+              truncatewords: 35}}</span>
+          </div>
+          <div id="article-alert" class="article-tags">
+            {% for cat in post.category limit:1 %}
+            <button class="btn btn-sm btn-dark">{{cat}}</button>
+            {% endfor %}
+          </div>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <div id="recent-article-footer" class="flex-align-right">
+    <a class="btn btn-sm btn-dark" href="/blog"> 전체 보기 ></a>
+  </div>
+</section>

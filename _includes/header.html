@@ -1,59 +1,48 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="topNav">
+  <div class="navbar-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="icono-hamburger" id="navbar-hamburger"> </span>
+    </button>
+    <a class="navbar-brand" href="/">{{site.title}}</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% for i in site.urls %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ site.url}}{{site.baseurl}}{{ i.url }}">{{ i.text }}</a>
+        </li>
+        {% endfor %}
 
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="topNav">
-          <div class="navbar-top">
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="icono-hamburger" id="navbar-hamburger"> </span>
-            </button>
-            <a class="navbar-brand" href="/">{{site.title}}</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                {% for i in site.urls %}
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="{{ site.url}}{{site.baseurl}}{{ i.url }}"
-                    >{{ i.text }}</a
-                  >
-                </li>
-                {% endfor %}
+      </ul>
+    </div>
+    <div class="nav justify-content-end">
+      <button class="btn btn-sm btn-dark about-button" onclick="location.href='https://resume.creboring.net'">About
+        me</button>
+    </div>
+  </div>
+</nav>
 
-              </ul>
-            </div>
-            <div class="nav justify-content-end">
-              <button class="btn btn-sm btn-dark about-button" onclick="location.href='/about/'">About me</button>
-            </div>
-          </div>
-        </nav>
+<!-- Search Form -->
+<div class="search-form-container">
 
-        <!-- Search Form -->
-        <div class="search-form-container">
-
-          <form class="search-form">
-            <fieldset class="search-form__fieldset">
-              <div class="row">
-                <div class="col-lg-8 offset-md-2">
-                  <input class="search-form__field" placeholder="Type to Search..." autofocus>
-                  <input class="search-form__submit" type="submit" value="search">
-                </div>
-              </div>
-            </fieldset>
-          </form>
-
-          <div class="row">
-            <div class="col-lg-8 offset-md-2 search-results">
-              <div class="card search-results"></div>
-            </div>
-          </div>
-
-          <div class="close-search-button search-form-container__close">
-              <i class="fa fa-times icon"></i>
-          </div>
+  <form class="search-form">
+    <fieldset class="search-form__fieldset">
+      <div class="row">
+        <div class="col-lg-8 offset-md-2">
+          <input class="search-form__field" placeholder="Type to Search..." autofocus>
+          <input class="search-form__submit" type="submit" value="search">
         </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <div class="row">
+    <div class="col-lg-8 offset-md-2 search-results">
+      <div class="card search-results"></div>
+    </div>
+  </div>
+
+  <div class="close-search-button search-form-container__close">
+    <i class="fa fa-times icon"></i>
+  </div>
+</div>
